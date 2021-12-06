@@ -50,6 +50,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 #container {
     background-color: rgb(250, 239, 84);
     height: 100%;
@@ -103,18 +104,18 @@ ul.horizontal li a {
     color: white;
     text-align: center;
     font-size: 2vmax;
-    padding: 14px 16px;
+    padding: 14px 11px;
     text-decoration: none;
 }
 
 #search-box{
-    padding: 0.5vw;
+    padding: 1vw;
     width: 20vw;
     display: flex;
     height: 2vw;
     font-size: 2vw;
     margin: 2vw;
-    margin-left: 1%;
+    margin-left: 10px;
     border-radius: 25px;
 }
 </style>
