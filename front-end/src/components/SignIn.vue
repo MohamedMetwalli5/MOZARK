@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "SignUp",
+  name: "SignIn",
   props: {
     msg: String,
   },

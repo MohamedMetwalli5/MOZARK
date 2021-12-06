@@ -19,13 +19,19 @@
       <!-- <input id="search"
        type="button"
        value="Search"> -->
-       </li>
+       </li> 
+       <li><a class="category-option" id="setting-option"  onclick="window.location.href='/Settings';">⚙️</a></li>
     </ul>
+    <SuggestedProducts/>
   </div>
 </template>
 
 <script>
+import SuggestedProducts from './SuggestedProducts.vue';
 export default {
+  components: { 
+    "SuggestedProducts": SuggestedProducts
+  },
   name: "Home",
   props: {
     msg: String,
@@ -88,6 +94,10 @@ li {
 ul.horizontal li a.category-option:hover{
     background-color: #04AA6D;
 }
+#setting-option:hover{
+    background-color: #a939eb;
+    cursor: pointer;
+}
 ul.horizontal li a {
     display: inline-block;
     color: white;
@@ -99,12 +109,12 @@ ul.horizontal li a {
 
 #search-box{
     padding: 0.5vw;
-    width: 30vw;
+    width: 20vw;
     display: flex;
     height: 2vw;
     font-size: 2vw;
     margin: 2vw;
-    margin-left: 36%;
+    margin-left: 1%;
     border-radius: 25px;
 }
 </style>

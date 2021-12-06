@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
 import Home from '../components/Home.vue'
+import Settings from '../components/Settings.vue'
+
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,10 @@ const routes = [
     path: '/Home',
     name: 'Home',
     component: Home
+  },{
+    path: '/Settings',
+    name: 'Settings',
+    component: Settings
   },
 ]
 
