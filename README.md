@@ -6,5 +6,11 @@
 An E-commerce Website
 ## System Main Components
 ![SystemMainComponents](https://user-images.githubusercontent.com/58489322/144869963-fccd4395-b488-488d-8636-2fde447c7a6a.png)
+
 ## System Packages
 ![SystemPackages](https://user-images.githubusercontent.com/58489322/144879109-84818dd1-d9a4-45fc-915e-d28c69695420.png)
+![image](https://user-images.githubusercontent.com/58489322/144879728-381f6ce8-9ec8-40aa-9222-6881657299e8.png)
+
+## Use Case Diagram
+![image](https://user-images.githubusercontent.com/58489322/144879469-1d2f4f9c-70ae-4837-b86c-81ab0e0350ca.png)
+
