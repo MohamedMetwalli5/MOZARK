@@ -1,12 +1,33 @@
 <template>
   <div id="container">
     <h1 id="title" onclick="window.location.href='/';">MOZARK</h1>
-    <form id="login-form">
+    <form id="signup-form">
+      <input
+        type="text"
+        placeholder="First Name"
+        value=""
+        id = "first-name"
+        ref="FName"
+        v-model="text"
+        required
+        class="text-box"
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value=""
+        id = "last-name"
+        ref="LName"
+        v-model="text"
+        required
+        class="text-box"
+      />
       <input
         type="email"
-        placeholder="UserName@seamail.com"
+        placeholder="UserName@mozark.com"
         value=""
         ref="emailRef"
+        id = "user-name"
         v-model="email"
         required
         class="text-box"
@@ -15,6 +36,7 @@
         type="password"
         placeholder="Password"
         value=""
+        id="first-password"
         ref="passwordRef"
         v-model="password"
         required
@@ -22,8 +44,17 @@
       />
       <input
         type="password"
-        placeholder="Repeat password"
+        placeholder="Confirm Password"
         value=""
+        id="confirm-password"
+        required
+        class="text-box"
+      />
+      <input
+        type="text"
+        placeholder="Phone Number"
+        value=""
+        id="phone-number"
         required
         class="text-box"
       />
@@ -31,7 +62,7 @@
     </form>
     <h2>
       Already have an account?
-      <a onclick="window.location.href='/';">Sign in</a>
+      <a style="color:red; text-decoration: underline;" onclick="window.location.href='/SignIn';">Sign in</a>
     </h2>
   </div>
 </template>
@@ -49,7 +80,53 @@ export default {
     };
   },
   methods: {
-    
+      CheckFullName(){
+        let first_name = document.getElementById("first-name").value;
+        let last_name = document.getElementById("last-name").value;
+        return /^[a-zA-Z]+$/.test(first_name) && /^[a-zA-Z]+$/.test(last_name);
+      },
+      CheckUserName(){
+        // let user_name = document.getElementById("user-name").value; // it should be sent to the database
+        let response = true;
+        //// to-do 
+        /// we should a request to the database to check whether this use name already exists or not, and we must return the response (true or fasle)
+        ////
+
+        return response;
+      },
+      CheckPassword(){
+        let first_password = document.getElementById("first-password").value;
+        let confirmation_password = document.getElementById("confirm-password").value;
+        if(first_password !== confirmation_password || first_password.length < 1){
+            return false;
+        }
+        return true;
+    },
+    CheckPhone(){
+        return /^\d+$/.test(document.getElementById("phone-number").value);
+    },
+    SignUp(){
+        if(this.CheckFullName() && this.CheckUserName() && this.CheckPassword() && this.CheckPhone()){
+            alert("Success");
+            //// to-do
+            // send a request to the database to save the user information and rout to the main page for shopping
+            ///
+            ////
+        }else{
+            if(!this.CheckFullName()){
+                alert("Invalid First Name or Last Name");
+            }else if(!this.CheckUserName()){
+                alert("User Name already exists");
+            }else if(!this.CheckUserName()){
+                alert("Please, Enter a Valid Password with a length of 8");
+            }else if(!this.CheckPhone()){
+                alert("Please, Enter a Valid Phone Number");
+            }
+        }
+    },
+    SignIn(){
+        window.location.href='/SignIn';
+    },
   },
 };
 </script>
@@ -57,27 +134,28 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #container {
-  background-color: rgb(0, 225, 255);
-  height: 100%;
-  width: 100%;
-  position: fixed;
+    background-color: rgb(250, 239, 84);
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgb(250, 239, 84);
+    /* position: absolute; */
 }
 #title {
   min-width: 30vw;
-  border-bottom: 10px solid #ffffff;
+  border-bottom: 10px solid #ff5b5b;
   border-radius: 50px;
   padding-bottom: 15px;
   display: inline-block;
-  font-size: 8vw;
-  color: rgb(252, 52, 52);
-  margin-left: 34%;
+  font-size: 7vw;
+  color: rgb(71, 103, 248);
+  margin-left: 33%;
   margin-top: 1%;
   margin-bottom: 2vw;
   font-family: "Yanone Kaffeesatz", cursive;
   text-shadow: 0px 0px 0 rgb(236, 180, 180), 1px 0px 0 rgb(236, 180, 180),
-    2px 0px 0 rgb(202, 202, 202), 3px 0px 0 rgb(187, 187, 187),
-    4px 0px 0 rgb(173, 173, 173), 5px 0px 0 rgb(236, 180, 180),
-    6px 0px 0 rgb(144, 144, 144), 7px 0px 6px rgba(0, 0, 0, 0.6),
+    2px 0px 0 rgb(252, 129, 129), 3px 0px 0 rgb(187, 187, 187),
+    4px 0px 0 rgb(255, 184, 184), 5px 0px 0 rgb(236, 180, 180),
+    6px 0px 0 rgb(250, 171, 171), 7px 0px 6px rgba(0, 0, 0, 0.6),
     7px 0px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2);
   z-index: 11;
   top: 0;
