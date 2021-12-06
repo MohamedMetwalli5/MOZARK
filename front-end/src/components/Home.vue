@@ -1,36 +1,12 @@
 <template>
   <div id="container">
     <h1 id="title" onclick="window.location.href='/';">MOZARK</h1>
-    <form id="signin-form">
-
-      <input
-        type="email"
-        placeholder="UserName@mozark.com"
-        value=""
-        ref="emailRef"
-        id = "user-name"
-        v-model="email"
-        required
-        class="text-box"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value=""
-        id="password"
-        ref="passwordRef"
-        v-model="password"
-        required
-        class="text-box"
-      />
-      <input type="button" value="Sign In" id="submit" @click="SignUp()" />
-    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SignUp",
+  name: "Home",
   props: {
     msg: String,
   },
@@ -41,30 +17,7 @@ export default {
     };
   },
   methods: {
-      CheckUserName(){
-        // let user_name = document.getElementById("user-name").value; // it should be sent to the database
-        let response = true;
-        //// to-do 
-        /// we should a request to the database to check whether this use name already exists or not, and we must return the response (true or fasle)
-        ////
-        return response;
-      },
-      CheckPassword(){
-        // let password = document.getElementById("password").value; // it should be sent to the database
-        let response = true;
-        //// to-do 
-        /// we should a request to the database to check whether this user name already exists and has this password or not, and we must return the response (true or fasle)
-        ////
-        return response;
-    },
-
-    SignIn(){
-      if(this.CheckUserName() && this.CheckPassword()){
-        window.location.href='/Home';
-      }else{
-        alert("Please, Enter valid information");
-      }
-    },
+     
   },
 };
 </script>
