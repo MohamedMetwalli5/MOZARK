@@ -14,3 +14,5 @@ An E-commerce Website
 ## Use Case Diagram
 ![image](https://user-images.githubusercontent.com/58489322/144879469-1d2f4f9c-70ae-4837-b86c-81ab0e0350ca.png)
 
+## DataBase Design 
+![image](https://user-images.githubusercontent.com/58489322/144879856-923df8a4-1e8f-4cab-8a73-9d9dafcf41d8.png)
