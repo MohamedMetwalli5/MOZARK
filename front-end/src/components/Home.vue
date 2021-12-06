@@ -1,6 +1,26 @@
 <template>
   <div id="container">
-    <h1 id="title" onclick="window.location.href='/';">MOZARK</h1>
+    <h1 id="title" onclick="window.location.href='/Home';">MOZARK</h1>
+    <ul class="horizontal">
+    <li><a class="category-option" >Clothing </a></li>
+    <li><a class="category-option" >Electronics</a></li>
+    <li><a class="category-option" >Shoes</a></li>
+    <li><a class="category-option" >Watches</a></li>
+    <li><a class="category-option" >Jewellery</a></li>
+    <li><a class="category-option" >Sports</a></li> 
+    <li id = "search-area"><input
+        type="text"
+        placeholder="Search"
+        value=""
+        ref="searchRef"
+        id = "search-box"
+        v-model="text"
+      />
+      <!-- <input id="search"
+       type="button"
+       value="Search"> -->
+       </li>
+    </ul>
   </div>
 </template>
 
@@ -32,14 +52,14 @@ export default {
     position: absolute;
 }
 #title {
-  min-width: 30vw;
+  min-width: 10vw;
   border-bottom: 10px solid #ff5b5b;
   border-radius: 50px;
   padding-bottom: 15px;
   display: inline-block;
-  font-size: 7vw;
+  font-size: 5vw;
   color: rgb(71, 103, 248);
-  margin-left: 33%;
+  margin-left: 35%;
   margin-top: 1%;
   margin-bottom: 2vw;
   font-family: "Yanone Kaffeesatz", cursive;
@@ -52,27 +72,39 @@ export default {
   top: 0;
   cursor: pointer;
 }
-.text-box {
-  padding: 0.5vw;
-  width: 23vw;
-  display: flex;
-  height: 3vw;
-  font-size: 2vw;
-  margin: 2vw;
-  margin-left: 36%;
-  border-radius: 30px;
+ul.horizontal {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
-#submit {
-  background-color: rgb(255, 0, 234);
-  width: 8vw;
-  height: 3vw;
-  border-radius: 20px;
-  font-size: 2vw;
-  margin-left: 44%;
-  cursor: pointer;
+li {
+    position: relative;
+    display: inline-block;
+    text-align: -webkit-match-parent;
+    cursor: pointer;
 }
-h2 {
-  font-size: 1.5vw;
-  margin-left: 36%;
+ul.horizontal li a.category-option:hover{
+    background-color: #04AA6D;
+}
+ul.horizontal li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 2vmax;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#search-box{
+    padding: 0.5vw;
+    width: 30vw;
+    display: flex;
+    height: 2vw;
+    font-size: 2vw;
+    margin: 2vw;
+    margin-left: 36%;
+    border-radius: 25px;
 }
 </style>

@@ -62,7 +62,7 @@
     </form>
     <h2>
       Already have an account?
-      <a style="color:red; text-decoration: underline;" onclick="window.location.href='/SignIn';">Sign in</a>
+      <a id ="SignInOption" style="color:red; text-decoration: underline;" onclick="window.location.href='/SignIn';">Sign in</a>
     </h2>
   </div>
 </template>
@@ -183,5 +183,8 @@ export default {
 h2 {
   font-size: 1.5vw;
   margin-left: 36%;
+}
+#SignInOption {
+  cursor: pointer;
 }
 </style>
