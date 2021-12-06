@@ -1,21 +1,8 @@
 <template>
   <div id="app">
-    <!-- <SignIn msg="Welcome to Your Vue.js App"/> -->
-    <SignUp/>
-
+    <router-view/>
   </div>
 </template>
-
-<script>
-import SignUp from './components/SignUp.vue'
-
-export default {
-  name: 'App',
-  components: {
-    SignUp
-  }
-}
-</script>
 
 <style>
 /* #app {
@@ -24,11 +11,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 } */
 
-html, body{
-  margin: 0;
-  height: 100%
+body, html{
+  margin: 0px;
 }
+
 </style>
