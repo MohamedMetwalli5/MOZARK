@@ -1,30 +1,41 @@
 <template>
-  <div id="container">
-    <TheNavBar />
-    <SuggestedProducts/>
+  <div id="the-nav-bar-container">
+    <h1 id="title" onclick="window.location.href='/Home';">MOZARK</h1>
+    <ul class="horizontal">
+    <li><a class="category-option" >Clothing </a></li>
+    <li><a class="category-option" >Electronics</a></li>
+    <li><a class="category-option" >Shoes</a></li>
+    <li><a class="category-option" >Watches</a></li>
+    <li><a class="category-option" >Jewellery</a></li>
+    <li><a class="category-option" >Sports</a></li> 
+    <li id = "search-area"><input
+        type="text"
+        placeholder="Search"
+        value=""
+        ref="searchRef"
+        id = "search-box"
+        v-model="text"
+      />
+      <!-- <input id="search"
+       type="button"
+       value="Search"> -->
+       </li> 
+       <li><a class="category-option" id="setting-option"  onclick="window.location.href='/Settings';">⚙️</a></li>
+    </ul>
   </div>
 </template>
 
 <script>
-import SuggestedProducts from './SuggestedProducts.vue';
-import TheNavBar from './TheNavBar.vue';
 export default {
-  components: { 
-    "TheNavBar": TheNavBar, 
-    "SuggestedProducts": SuggestedProducts
-  },
-  name: "Home",
+  name: "TheNavBar",
   props: {
     msg: String,
   },
   data() {
     return {
-      email: "",
-      password: "",
     };
   },
   methods: {
-     
   },
 };
 </script>
@@ -32,7 +43,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-#container {
+#settings-container {
     background-color: rgb(250, 239, 84);
     height: 100%;
     width: 100%;

@@ -97,7 +97,7 @@ export default {
       CheckPassword(){
         let first_password = document.getElementById("first-password").value;
         let confirmation_password = document.getElementById("confirm-password").value;
-        if(first_password !== confirmation_password || first_password.length < 1){
+        if(first_password !== confirmation_password || first_password.length < 8){
             return false;
         }
         return true;
