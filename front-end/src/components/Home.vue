@@ -2,16 +2,20 @@
   <div id="container">
     <TheNavBar />
     <SuggestedProducts/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import SuggestedProducts from './SuggestedProducts.vue';
 import TheNavBar from './TheNavBar.vue';
+import Footer from './Footer.vue';
+
 export default {
   components: { 
     "TheNavBar": TheNavBar, 
-    "SuggestedProducts": SuggestedProducts
+    "SuggestedProducts": SuggestedProducts,
+    "Footer" : Footer,
   },
   name: "Home",
   props: {
@@ -34,10 +38,10 @@ export default {
 
 #container {
     background-color: rgb(250, 239, 84);
-    height: 100%;
     width: 100%;
     border: 1px solid rgb(250, 239, 84);
     position: absolute;
+    background-size: 100%;
 }
 #title {
   min-width: 10vw;

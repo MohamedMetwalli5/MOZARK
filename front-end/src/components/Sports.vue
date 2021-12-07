@@ -1,13 +1,19 @@
 <template>
   <div id="sports-container">
     <TheNavBar />
+    <Footer />
   </div>
 </template>
 
 <script>
 import TheNavBar from './TheNavBar.vue';
+import Footer from './Footer.vue';
+
 export default {
-  components:{"TheNavBar" : TheNavBar},
+  components:{
+    "TheNavBar" : TheNavBar,
+    "Footer" : Footer,
+    },
   name: "Sports",
   props: {
     msg: String,
@@ -22,9 +28,9 @@ export default {
 </script>
 
 <style scoped>
-#settings-container {
+#sports-container {
     background-color: rgb(250, 239, 84);
-    height: 100%;
+    background-size: cover;
     width: 100%;
     border: 1px solid rgb(250, 239, 84);
     position: absolute;

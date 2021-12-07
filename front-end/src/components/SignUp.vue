@@ -137,6 +137,7 @@ export default {
     background-color: rgb(250, 239, 84);
     height: 100%;
     width: 100%;
+    background-size: cover;
     border: 1px solid rgb(250, 239, 84);
     /* position: absolute; */
 }

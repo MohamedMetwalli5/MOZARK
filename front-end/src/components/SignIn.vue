@@ -74,6 +74,7 @@ export default {
 #container {
     background-color: rgb(250, 239, 84);
     height: 100%;
+    background-size: cover;
     width: 100%;
     border: 1px solid rgb(250, 239, 84);
     position: absolute;

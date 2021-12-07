@@ -74,13 +74,19 @@
           @click="Save('phone-number-save')"
         />  
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import TheNavBar from './TheNavBar.vue';
+import Footer from './Footer.vue';
+
 export default {
-  components:{"TheNavBar" : TheNavBar},
+  components:{
+    "TheNavBar" : TheNavBar,
+    "Footer" : Footer,
+  },
   name: "Settings",
   props: {
     msg: String,
@@ -133,7 +139,7 @@ export default {
 <style scoped>
 #settings-container {
     background-color: rgb(250, 239, 84);
-    height: 100%;
+    background-size: cover;
     width: 100%;
     border: 1px solid rgb(250, 239, 84);
     position: absolute;

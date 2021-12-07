@@ -20,7 +20,7 @@
        type="button"
        value="Search"> -->
        </li> 
-       <li><a class="category-option" id="setting-option"  onclick="window.location.href='/Settings';">⚙️</a></li>
+       <li><a class="category-option" id="setting-option"  @click="SettingsNavigator()">⚙️</a></li>
     </ul>
   </div>
 </template>
@@ -29,13 +29,20 @@
 export default {
   name: "TheNavBar",
   props: {
-    msg: String,
+    IsAdmin: Boolean,
   },
   data() {
     return {
     };
   },
   methods: {
+    SettingsNavigator(){
+      if(this.IsAdmin === true){
+        window.location.href='/AdminSettings';
+      }else{
+        window.location.href='/Settings';
+      }
+    },
   },
 };
 </script>
@@ -76,7 +83,7 @@ ul.horizontal {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(0, 54, 136)
 }
 li {
     position: relative;

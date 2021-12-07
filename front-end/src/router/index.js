@@ -4,6 +4,7 @@ import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
 import Home from '../components/Home.vue'
 import Settings from '../components/Settings.vue'
+import AdminSettings from '../components/AdminSettings.vue'
 import Clothing from '../components/Clothing.vue'
 import Electronics from '../components/Electronics.vue'
 import Shoes from '../components/Shoes.vue'
@@ -55,6 +56,10 @@ const routes = [
     path: '/Sports',
     name: 'Sports',
     component: Sports
+  },{
+    path: '/AdminSettings',
+    name: 'AdminSettings',
+    component: AdminSettings
   },
 ]
 
