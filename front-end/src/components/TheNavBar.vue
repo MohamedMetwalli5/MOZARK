@@ -2,12 +2,12 @@
   <div id="the-nav-bar-container">
     <h1 id="title" onclick="window.location.href='/Home';">MOZARK</h1>
     <ul class="horizontal">
-    <li><a class="category-option" >Clothing </a></li>
-    <li><a class="category-option" >Electronics</a></li>
-    <li><a class="category-option" >Shoes</a></li>
-    <li><a class="category-option" >Watches</a></li>
-    <li><a class="category-option" >Jewellery</a></li>
-    <li><a class="category-option" >Sports</a></li> 
+    <li><a class="category-option" onclick="window.location.href='/Clothing';">Clothing </a></li>
+    <li><a class="category-option" onclick="window.location.href='/Electronics';">Electronics</a></li>
+    <li><a class="category-option" onclick="window.location.href='/Shoes';">Shoes</a></li>
+    <li><a class="category-option" onclick="window.location.href='/Watches';">Watches</a></li>
+    <li><a class="category-option" onclick="window.location.href='/Jewellery';">Jewellery</a></li>
+    <li><a class="category-option" onclick="window.location.href='/Sports';">Sports</a></li> 
     <li id = "search-area"><input
         type="text"
         placeholder="Search"

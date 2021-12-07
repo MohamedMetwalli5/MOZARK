@@ -4,7 +4,12 @@ import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
 import Home from '../components/Home.vue'
 import Settings from '../components/Settings.vue'
-
+import Clothing from '../components/Clothing.vue'
+import Electronics from '../components/Electronics.vue'
+import Shoes from '../components/Shoes.vue'
+import Watches from '../components/Watches.vue'
+import Jewellery from '../components/Jewellery.vue'
+import Sports from '../components/Sports.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +31,30 @@ const routes = [
     path: '/Settings',
     name: 'Settings',
     component: Settings
+  },{
+    path: '/Clothing',
+    name: 'Clothing',
+    component: Clothing
+  },{
+    path: '/Electronics',
+    name: 'Electronics',
+    component: Electronics
+  },{
+    path: '/Shoes',
+    name: 'Shoes',
+    component: Shoes
+  },{
+    path: '/Watches',
+    name: 'Watches',
+    component: Watches
+  },{
+    path: '/Jewellery',
+    name: 'Jewellery',
+    component: Jewellery
+  },{
+    path: '/Sports',
+    name: 'Sports',
+    component: Sports
   },
 ]
 
