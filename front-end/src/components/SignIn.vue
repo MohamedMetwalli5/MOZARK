@@ -23,7 +23,7 @@
         required
         class="text-box"
       />
-      <input type="button" value="Sign In" id="submit" @click="SignUp()" />
+      <input type="button" value="Sign In" id="submit" @click="SignIn()" />
     </form>
   </div>
 </template>
