@@ -11,6 +11,7 @@ import Shoes from '../components/Shoes.vue'
 import Watches from '../components/Watches.vue'
 import Jewellery from '../components/Jewellery.vue'
 import Sports from '../components/Sports.vue'
+import ShoppingCart from '../components/ShoppingCart.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,10 @@ const routes = [
     path: '/AdminSettings',
     name: 'AdminSettings',
     component: AdminSettings
+  },{
+    path: '/ShoppingCart',
+    name: 'ShoppingCart',
+    component: ShoppingCart
   },
 ]
 

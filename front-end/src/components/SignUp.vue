@@ -134,12 +134,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #container {
-    background-image: linear-gradient(45deg, rgb(247, 235, 72), rgb(63, 243, 78));
-    height: 100%;
-    width: 100%;
+    background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
+    height: 110%;
     background-size: cover;
+    width: 100%;
     border: 1px solid rgb(250, 239, 84);
-    /* position: absolute; */
+    position: absolute;
 }
 #title {
   min-width: 25vw;

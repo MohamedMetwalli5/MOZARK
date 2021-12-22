@@ -20,7 +20,8 @@
        type="button"
        value="Search"> -->
        </li> 
-       <li><a class="category-option" id="setting-option"  @click="SettingsNavigator()">⚙️</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="ShoppingCartNavigator()">🛒</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="SettingsNavigator()">⚙️</a></li>
     </ul>
   </div>
 </template>
@@ -42,6 +43,9 @@ export default {
       }else{
         window.location.href='/Settings';
       }
+    },
+    ShoppingCartNavigator(){
+      window.location.href='/ShoppingCart';
     },
   },
 };
@@ -96,7 +100,7 @@ li {
 ul.horizontal li a.category-option:hover{
     background-color: #04AA6D;
 }
-#setting-option:hover{
+#navbar-option:hover{
     background-color: #a939eb;
     cursor: pointer;
 }
