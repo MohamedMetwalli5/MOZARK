@@ -1,5 +1,5 @@
 <template>
-  <div id="sports-container">
+  <div id="ShoppingCart-container">
     <TheNavBar />
     <Footer />
   </div>
@@ -14,7 +14,7 @@ export default {
     "TheNavBar" : TheNavBar,
     "Footer" : Footer,
     },
-  name: "Sports",
+  name: "Jewellery",
   props: {
     msg: String,
   },
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#sports-container {
+#ShoppingCart-container {
     background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
     background-size: cover;
     width: 100%;

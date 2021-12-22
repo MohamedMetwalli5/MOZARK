@@ -20,7 +20,8 @@
        type="button"
        value="Search"> -->
        </li> 
-       <li><a class="category-option" id="setting-option"  @click="SettingsNavigator()">⚙️</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="ShoppingCartNavigator()">🛒</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="SettingsNavigator()">⚙️</a></li>
     </ul>
   </div>
 </template>
@@ -42,6 +43,9 @@ export default {
       }else{
         window.location.href='/Settings';
       }
+    },
+    ShoppingCartNavigator(){
+      window.location.href='/ShoppingCart';
     },
   },
 };
@@ -88,13 +92,15 @@ ul.horizontal {
 li {
     position: relative;
     display: inline-block;
+    margin-top: -10px;
+    margin-bottom: -10px;
     text-align: -webkit-match-parent;
     cursor: pointer;
 }
 ul.horizontal li a.category-option:hover{
     background-color: #04AA6D;
 }
-#setting-option:hover{
+#navbar-option:hover{
     background-color: #a939eb;
     cursor: pointer;
 }
@@ -102,16 +108,16 @@ ul.horizontal li a {
     display: inline-block;
     color: white;
     text-align: center;
-    font-size: 2vmax;
-    padding: 14px 11px;
+    font-size: 2vw;
+    padding: 10px 11px;
     text-decoration: none;
 }
 
 #search-box{
-    padding: 1vw;
+    padding: 7px;
     width: 20vw;
     display: flex;
-    height: 2vw;
+    height: 1.8vw;
     font-size: 2vw;
     margin: 2vw;
     margin-left: 10px;

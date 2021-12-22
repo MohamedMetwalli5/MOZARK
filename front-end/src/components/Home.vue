@@ -37,7 +37,7 @@ export default {
 <style scoped>
 
 #container {
-    background-color: rgb(250, 239, 84);
+    background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
     width: 100%;
     border: 1px solid rgb(250, 239, 84);
     position: absolute;

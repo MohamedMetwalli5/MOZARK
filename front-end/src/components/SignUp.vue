@@ -134,24 +134,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #container {
-    background-color: rgb(250, 239, 84);
-    height: 100%;
-    width: 100%;
+    background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
+    height: 110%;
     background-size: cover;
+    width: 100%;
     border: 1px solid rgb(250, 239, 84);
-    /* position: absolute; */
+    position: absolute;
 }
 #title {
-  min-width: 30vw;
-  border-bottom: 10px solid #ff5b5b;
+  min-width: 25vw;
+  border-bottom: 0.7vw solid #ff5b5b;
   border-radius: 50px;
   padding-bottom: 15px;
+  padding-left: 3.6vw;
   display: inline-block;
-  font-size: 7vw;
+  font-size: 5vw;
   color: rgb(71, 103, 248);
   margin-left: 33%;
-  margin-top: 1%;
-  margin-bottom: 2vw;
+  margin-top: 10px;
+  margin-bottom: 1vw;
   font-family: "Yanone Kaffeesatz", cursive;
   text-shadow: 0px 0px 0 rgb(236, 180, 180), 1px 0px 0 rgb(236, 180, 180),
     2px 0px 0 rgb(252, 129, 129), 3px 0px 0 rgb(187, 187, 187),
@@ -166,7 +167,7 @@ export default {
   padding: 0.5vw;
   width: 23vw;
   display: flex;
-  height: 3vw;
+  height: 2vw;
   font-size: 2vw;
   margin: 2vw;
   margin-left: 36%;
@@ -177,7 +178,7 @@ export default {
   width: 8vw;
   height: 3vw;
   border-radius: 20px;
-  font-size: 2vw;
+  font-size: 1.7vw;
   margin-left: 44%;
   cursor: pointer;
 }
