@@ -134,7 +134,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #container {
-    background-color: rgb(250, 239, 84);
+    background-image: linear-gradient(45deg, rgb(247, 235, 72), rgb(63, 243, 78));
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -152,7 +152,7 @@ export default {
   color: rgb(71, 103, 248);
   margin-left: 33%;
   margin-top: 10px;
-  margin-bottom: 2vw;
+  margin-bottom: 1vw;
   font-family: "Yanone Kaffeesatz", cursive;
   text-shadow: 0px 0px 0 rgb(236, 180, 180), 1px 0px 0 rgb(236, 180, 180),
     2px 0px 0 rgb(252, 129, 129), 3px 0px 0 rgb(187, 187, 187),
@@ -178,7 +178,7 @@ export default {
   width: 8vw;
   height: 3vw;
   border-radius: 20px;
-  font-size: 2vw;
+  font-size: 1.7vw;
   margin-left: 44%;
   cursor: pointer;
 }

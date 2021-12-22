@@ -72,7 +72,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #container {
-    background-color: rgb(250, 239, 84);
+    background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
     height: 100%;
     background-size: cover;
     width: 100%;
