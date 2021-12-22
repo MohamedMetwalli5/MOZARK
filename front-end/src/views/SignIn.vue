@@ -23,7 +23,7 @@
         required
         class="text-box"
       />
-      <input type="button" value="Sign In" id="submit" @click="SignIn()" />
+      <input type="button" value="Sign In" id="submit" @click.prevent="SignIn" />
     </form>
   </div>
 </template>
@@ -31,9 +31,6 @@
 <script>
 export default {
   name: "SignIn",
-  props: {
-    msg: String,
-  },
   data() {
     return {
       email: "",
@@ -41,28 +38,50 @@ export default {
     };
   },
   methods: {
-      CheckUserName(){
-        // let user_name = document.getElementById("user-name").value; // it should be sent to the database
-        let response = true;
-        //// to-do 
-        /// we should a request to the database to check whether this use name already exists or not, and we must return the response (true or fasle)
-        ////
-        return response;
-      },
-      CheckPassword(){
-        // let password = document.getElementById("password").value; // it should be sent to the database
-        let response = true;
-        //// to-do 
-        /// we should a request to the database to check whether this user name already exists and has this password or not, and we must return the response (true or fasle)
-        ////
-        return response;
+    parseText: function (resp) {
+        return resp.text();
     },
+    checkStatus: function (resp) {
+        console.log('status');
+        if (resp.status >= 200 && resp.status < 300) {
+            console.log('good status');
+            return resp;
+        }
+        console.log('bad status');
+        return this.parseJSON(resp).then((resp) => {
+            throw resp;
+        });
+    },
+    async login(){
+        try {
+          console.log(this.email);
+          console.log(this.password);
+          const response = await fetch( "http://localhost:8080/signin/" , {
+              method: "post",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                userName: this.email,
+                password: this.password
+              })
+          }).then(this.checkStatus)
+          .then(this.parseJSON);
 
-    SignIn(){
-      if(this.CheckUserName() && this.CheckPassword()){
-        window.location.href='/Home';
-      }else{
-        alert("Please, Enter valid information");
+          this.$store.commit('saveUserData',{
+              _id: response,
+              _name: this.form.userName
+          });
+          console.log("user name that stored in the Vuex" + this.$store.state.userID);
+          return true;
+        } catch (error) {
+            return false;
+        } 
+      },
+    async SignIn(){
+      const valid = await this.login();
+      if (valid === true) {
+          this.$router.push({ name: "SignUp" });
+      } else {
+          alert("Please try agian, email or password is wrong :(");
       }
     },
   },

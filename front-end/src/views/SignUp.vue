@@ -8,7 +8,7 @@
         value=""
         id = "first-name"
         ref="FName"
-        v-model="text"
+        v-model="user.firstName"
         required
         class="text-box"
       />
@@ -18,7 +18,7 @@
         value=""
         id = "last-name"
         ref="LName"
-        v-model="text"
+        v-model="user.lastName"
         required
         class="text-box"
       />
@@ -28,7 +28,7 @@
         value=""
         ref="emailRef"
         id = "user-name"
-        v-model="email"
+        v-model="user.email"
         required
         class="text-box"
       />
@@ -38,7 +38,7 @@
         value=""
         id="first-password"
         ref="passwordRef"
-        v-model="password"
+        v-model="user.password"
         required
         class="text-box"
       />
@@ -47,6 +47,7 @@
         placeholder="Confirm Password"
         value=""
         id="confirm-password"
+        v-model="confirmPassword"
         required
         class="text-box"
       />
@@ -55,14 +56,24 @@
         placeholder="Phone Number"
         value=""
         id="phone-number"
+        v-model="user.phone"
         required
         class="text-box"
       />
-      <input type="button" value="Sign up" id="submit" @click="SignUp()" />
+      <input
+        type="text"
+        placeholder="Address"
+        value=""
+        id="Address"
+        v-model="user.address"
+        required
+        class="text-box"
+      />
+      <input type="button" value="Sign up" id="submit" @click="SignUp" />
     </form>
     <h2>
       Already have an account?
-      <a id ="SignInOption" style="color:red; text-decoration: underline;" onclick="window.location.href='/SignIn';">Sign in</a>
+      <a id ="SignInOption" style="color:red; text-decoration: underline;" @click.prevent="SignIn">Sign in</a>
     </h2>
   </div>
 </template>
@@ -70,48 +81,65 @@
 <script>
 export default {
   name: "SignUp",
-  props: {
-    msg: String,
-  },
   data() {
     return {
-      email: "",
-      password: "",
+      confirmPassword:'',
+      user: {
+          firstName:'',
+          lastName:'',
+          email:'',
+          password:'',
+          phone:'',
+          address:'',
+      },
     };
   },
   methods: {
+      parseText: function (resp) {
+          return resp.text();
+      },
+      checkStatus: function (resp) {
+          if (resp.status >= 200 && resp.status < 300) {
+              console.log('good status');
+              return true;
+          }
+          console.log('bad status');
+          return false;
+      },
       CheckFullName(){
-        let first_name = document.getElementById("first-name").value;
-        let last_name = document.getElementById("last-name").value;
+        let first_name = this.user.firstName;
+        let last_name = this.user.lastName;
         return /^[a-zA-Z]+$/.test(first_name) && /^[a-zA-Z]+$/.test(last_name);
       },
-      CheckUserName(){
-        // let user_name = document.getElementById("user-name").value; // it should be sent to the database
-        let response = true;
-        //// to-do 
-        /// we should a request to the database to check whether this use name already exists or not, and we must return the response (true or fasle)
-        ////
-
+      async CheckUserName(){
+        const response = await fetch("http://localhost:8080/checkUsername/" + this.user.email,{ 
+            method: "get",
+            headers: {'Content-Type': 'application/json'}
+        }).then(this.checkStatus)
+        .then(this.parseText);
+        console.log("response of check userName: " + response);
         return response;
       },
       CheckPassword(){
-        let first_password = document.getElementById("first-password").value;
-        let confirmation_password = document.getElementById("confirm-password").value;
-        if(first_password !== confirmation_password || first_password.length < 8){
-            return false;
-        }
-        return true;
+        return this.user.password === this.confirmPassword;
     },
     CheckPhone(){
-        return /^\d+$/.test(document.getElementById("phone-number").value);
+        return /^\d+$/.test(this.user.phone);
     },
-    SignUp(){
+    async SignUp(){
         if(this.CheckFullName() && this.CheckUserName() && this.CheckPassword() && this.CheckPhone()){
-            alert("Success");
-            //// to-do
-            // send a request to the database to save the user information and rout to the main page for shopping
-            ///
-            ////
+            const response = await fetch("http://localhost:8080/signup", {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.user),
+            }).then(this.parseText)
+
+            if(response){
+              alert("Signed up seccessfully");
+              this.$router.push({ name: "SignIn" });
+            }else{
+              alert("Failed to SignUp");
+            }
         }else{
             if(!this.CheckFullName()){
                 alert("Invalid First Name or Last Name");
@@ -125,7 +153,7 @@ export default {
         }
     },
     SignIn(){
-        window.location.href='/SignIn';
+        this.$router.push({ name: "SignIn" });
     },
   },
 };
