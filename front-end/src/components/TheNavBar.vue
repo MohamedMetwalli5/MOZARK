@@ -88,6 +88,8 @@ ul.horizontal {
 li {
     position: relative;
     display: inline-block;
+    margin-top: -10px;
+    margin-bottom: -10px;
     text-align: -webkit-match-parent;
     cursor: pointer;
 }
@@ -102,16 +104,16 @@ ul.horizontal li a {
     display: inline-block;
     color: white;
     text-align: center;
-    font-size: 2vmax;
-    padding: 14px 11px;
+    font-size: 2vw;
+    padding: 10px 11px;
     text-decoration: none;
 }
 
 #search-box{
-    padding: 1vw;
+    padding: 7px;
     width: 20vw;
     display: flex;
-    height: 2vw;
+    height: 1.8vw;
     font-size: 2vw;
     margin: 2vw;
     margin-left: 10px;

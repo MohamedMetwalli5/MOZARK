@@ -142,15 +142,16 @@ export default {
     /* position: absolute; */
 }
 #title {
-  min-width: 30vw;
-  border-bottom: 10px solid #ff5b5b;
+  min-width: 25vw;
+  border-bottom: 0.7vw solid #ff5b5b;
   border-radius: 50px;
   padding-bottom: 15px;
+  padding-left: 3.6vw;
   display: inline-block;
-  font-size: 7vw;
+  font-size: 5vw;
   color: rgb(71, 103, 248);
   margin-left: 33%;
-  margin-top: 1%;
+  margin-top: 10px;
   margin-bottom: 2vw;
   font-family: "Yanone Kaffeesatz", cursive;
   text-shadow: 0px 0px 0 rgb(236, 180, 180), 1px 0px 0 rgb(236, 180, 180),
@@ -166,7 +167,7 @@ export default {
   padding: 0.5vw;
   width: 23vw;
   display: flex;
-  height: 3vw;
+  height: 2vw;
   font-size: 2vw;
   margin: 2vw;
   margin-left: 36%;
