@@ -10,7 +10,7 @@ import software.project.backend.Model.UserMapper;
 public class UserDAO {
 
 
-	private final String SQL_INSERT_USER = "INSERT INTO user (userId,userName,password,firstName,lastName,Address,Phone,photo) VALUES (?,?,?,?,?,?,?,?)";
+	private final String SQL_INSERT_USER = "INSERT INTO user (userName,password,firstName,lastName,Address,Phone) VALUES (?,?,?,?,?,?)";
 	private final String SQL_DELETE_PERSON = "delete from people where id = ?";
 	private final String SQL_UPDATE_PERSON = "update people set first_name = ?, last_name = ?, age  = ? where id = ?";
 	private final String SQL_GET_ALL = "select * from people";
@@ -22,9 +22,9 @@ public class UserDAO {
 		 this.jdbcTemplate = jdbcTemplate ;
 	 }
 	
-	public boolean insertUser() {
+	public boolean insertUser(User user) {
 	     
-	        int result = jdbcTemplate.update(SQL_INSERT_USER, 87,"omarrehan758","123456789","omar","rehan" ,"fowa","01020619238",null);
+	        int result = jdbcTemplate.update(SQL_INSERT_USER,user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),user.getAddress(),user.getPhone());
 	         
 	        if (result > 0) {
 	            System.out.println("A new row has been inserted.");

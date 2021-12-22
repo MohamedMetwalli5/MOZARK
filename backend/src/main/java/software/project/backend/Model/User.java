@@ -1,10 +1,10 @@
 package software.project.backend.Model;
 
-public class User {
+public class User implements Imodel{
 	private Long userId;
 	private String userName;
-	private String lastName;
 	private String firstName;
+	private String lastName;
 	private String password;
 	private String Address;
 	private String phone;
