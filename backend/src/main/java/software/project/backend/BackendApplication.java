@@ -7,7 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+<<<<<<< Updated upstream
 import Database.UserDAO;
+=======
+import software.project.backend.Database.UserDAO;
+>>>>>>> Stashed changes
 
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
@@ -22,7 +26,11 @@ public class BackendApplication implements CommandLineRunner {
 	 @Override
 	    public void run(String... args) throws Exception {
 	       UserDAO ui = new UserDAO(jdbcTemplate) ;
+<<<<<<< Updated upstream
            Model.User uur = ui.getUserByUserName("omarrehan0020");
+=======
+           software.project.backend.Model.User uur = ui.getUserByUserName("omarrehan0020");
+>>>>>>> Stashed changes
            System.out.println(uur.getFirstName() + uur.getLastName());
 	         
 	    }
