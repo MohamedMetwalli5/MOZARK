@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import TheNavBar from './TheNavBar.vue';
-import Footer from './Footer.vue';
+import TheNavBar from '../components/TheNavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components:{

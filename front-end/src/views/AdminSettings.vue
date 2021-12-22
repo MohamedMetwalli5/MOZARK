@@ -195,8 +195,8 @@
 </template>
 
 <script>
-import Footer from './Footer.vue';
-import TheNavBar from './TheNavBar.vue';
+import Footer from '../components/Footer.vue';
+import TheNavBar from '../components/TheNavBar.vue';
 export default {
   components:{
     "TheNavBar" : TheNavBar, 

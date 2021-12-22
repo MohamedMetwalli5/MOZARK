@@ -167,7 +167,7 @@ export default {
   padding: 0.5vw;
   width: 23vw;
   display: flex;
-  height: 2vw;
+  height: 1.5vw;
   font-size: 2vw;
   margin: 2vw;
   margin-left: 36%;

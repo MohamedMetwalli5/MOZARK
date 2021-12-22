@@ -1,20 +1,20 @@
 <template>
-  <div id="sports-container">
+  <div id="clothing-container">
     <TheNavBar />
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
-import TheNavBar from './TheNavBar.vue';
-import Footer from './Footer.vue';
+import TheNavBar from '../components/TheNavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components:{
     "TheNavBar" : TheNavBar,
     "Footer" : Footer,
     },
-  name: "Sports",
+  name: "Clothing",
   props: {
     msg: String,
   },
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#sports-container {
+#clothing-container {
     background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
     background-size: cover;
     width: 100%;

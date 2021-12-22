@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import SuggestedProducts from './SuggestedProducts.vue';
-import TheNavBar from './TheNavBar.vue';
-import Footer from './Footer.vue';
+import SuggestedProducts from '../components/SuggestedProducts.vue';
+import TheNavBar from '../components/TheNavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components: { 

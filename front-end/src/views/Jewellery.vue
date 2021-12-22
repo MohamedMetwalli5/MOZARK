@@ -1,13 +1,13 @@
 <template>
-  <div id="ShoppingCart-container">
+  <div id="jewellery-container">
     <TheNavBar />
     <Footer />
   </div>
 </template>
 
 <script>
-import TheNavBar from './TheNavBar.vue';
-import Footer from './Footer.vue';
+import TheNavBar from '../components/TheNavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components:{
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#ShoppingCart-container {
+#jewellery-container {
     background-image: linear-gradient(180deg, rgb(247, 235, 72), rgb(63, 243, 78));
     background-size: cover;
     width: 100%;

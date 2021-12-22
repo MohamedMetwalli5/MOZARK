@@ -38,7 +38,8 @@
                     <a id="github-icon"
                         href="https://github.com/MohamedMetwalli5/MOZARK" 
                         target="_blank"
-                    ><fa-icon :icon="['fab', 'github-square']" size="3x" id="github"/> <!-- for contacting the project link -->
+                    ><fa-icon :icon="['fab', 'github-square']" size="3x" id="github"/> <!-- for contacting the project link --> 
+                    <!-- For my project mates' send me your LinkedIn links if you want to put them in the footer. -->
                     </a>
                 </li>
             </ul>
