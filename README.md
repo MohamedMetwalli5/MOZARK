@@ -6,6 +6,7 @@
 
 # MOZARK 
 An E-commerce Website
+Jira : https://mozark5.atlassian.net/jira/software/projects/MOZARK/boards/1
 ## System Main Components
 ![SystemMainComponents](https://user-images.githubusercontent.com/58489322/144869963-fccd4395-b488-488d-8636-2fde447c7a6a.png)
 
