@@ -28,7 +28,7 @@
         value=""
         ref="emailRef"
         id = "user-name"
-        v-model="user.email"
+        v-model="user.userName"
         required
         class="text-box"
       />
@@ -65,7 +65,7 @@
         placeholder="Address"
         value=""
         id="Address"
-        v-model="user.address"
+        v-model="user.Address"
         required
         class="text-box"
       />
@@ -87,10 +87,10 @@ export default {
       user: {
           firstName:'',
           lastName:'',
-          email:'',
+          userName:'',
           password:'',
           phone:'',
-          address:'',
+          Address:'',
       },
     };
   },
