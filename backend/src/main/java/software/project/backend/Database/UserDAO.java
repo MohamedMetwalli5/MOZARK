@@ -1,5 +1,10 @@
 package software.project.backend.Database;
 
+import javax.sql.DataSource;
+
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,8 +23,20 @@ public class UserDAO {
 	 private JdbcTemplate jdbcTemplate;
 	 
 	 public UserDAO(JdbcTemplate jdbcTemplate) {
-		 this.jdbcTemplate = jdbcTemplate ;
+		 this.jdbcTemplate = new JdbcTemplate(dataSource()) ;
 	 }
+	 @Bean
+	 @Primary
+	 public static DataSource dataSource() {
+		 return DataSourceBuilder
+				 .create()
+				 .username("sql4460814")
+				 .password("Ruwqt9etyE")
+				 .url("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4460814")
+				 .driverClassName("com.mysql.cj.jdbc.Driver")
+				 .build();
+	 }
+	
 
 	public boolean insertUser(User user) {
 

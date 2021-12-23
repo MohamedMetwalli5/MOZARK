@@ -10,7 +10,7 @@ public class adminService {
     private Director director=new Director();
     @Autowired
     private JdbcTemplate jdbcTemplate=new JdbcTemplate();
-    private ProductDAO productOperation=new ProductDAO(jdbcTemplate);
+    private ProductDAO productOperation=new ProductDAO();
     public boolean addProduct(String dataSent){
         Product product=(Product) director.composeModel("product",dataSent);
         return productOperation.insertProduct(product);
