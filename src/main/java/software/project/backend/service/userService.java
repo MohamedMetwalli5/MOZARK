@@ -2,9 +2,6 @@ package software.project.backend.service;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import software.project.backend.Database.UserDAO;
 import software.project.backend.Model.User;
 import software.project.backend.Model.builder.Director;
 import software.project.backend.sercuirty.Singelton;
@@ -14,17 +11,14 @@ public class userService {
     private Director director=new Director();
     private Singelton trackingSystem;
     private passwordOperations passwordOperations=new passwordOperations();
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    private UserDAO userDAO=new UserDAO(jdbcTemplate);
+
     public boolean signUp(String dataSent){
         User user = (User) director.composeModel("user",dataSent);
-        System.out.println(user.getUserName()+" "+user.getFirstName()+" "+user.getPassword());
-        return userDAO.insertUser(user);
+        //sent to database function
+        return true;
     }
     public boolean checkUserName(String userName){
-        System.out.println(userName);
-        return !userDAO.findByUserName(userName);
+        return true;//
     }
     public String signIn(String dataSent){
         String userName;
@@ -33,11 +27,10 @@ public class userService {
             JSONObject obj = new JSONObject(dataSent);
             userName=obj.getString("userName");
             password=passwordOperations.passswordToHash(obj.getString("password"));
-            System.out.println(userName+"-->"+password);
         } catch (JSONException e) {
             return null;
         }
-        String temp= String.valueOf(userDAO.checkSignIn(userName,password));
+        String temp=null;// dbOperations.readuserFromdb(userName);
         if(temp==null) return null;
         trackingSystem= Singelton.getInstance();
         return trackingSystem.addOnlineUser(temp);

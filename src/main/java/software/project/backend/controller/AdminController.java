@@ -13,13 +13,8 @@ import software.project.backend.service.adminService;
 public class AdminController {
     adminService service=new adminService();
     @PostMapping("/admin/addProduct")
-    public ResponseEntity<Boolean> addProductController(@RequestBody String temp){
+    public ResponseEntity<Boolean> signupController(@RequestBody String temp){
         if (service.addProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
-        return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
-    }
-    @PostMapping("/admin/updateProduct")
-    public ResponseEntity<Boolean> updateProductController(@RequestBody String temp){
-        if (service.UpdateProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
 

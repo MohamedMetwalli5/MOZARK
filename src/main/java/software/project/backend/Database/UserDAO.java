@@ -32,10 +32,10 @@ public class UserDAO {
 	        return false ;
 		}
 	
-	public boolean findByUserName(String u) {
+	public boolean findByUserName(User u) {
 	    try {
 	      User user = jdbcTemplate.queryForObject(SQL_SELECT_BY_USERNAME,
-	          BeanPropertyRowMapper.newInstance(User.class), u);
+	          BeanPropertyRowMapper.newInstance(User.class), u.getUserName());
 	      System.out.println(user.getUserId());
 	      System.out.println(user.getUserName());
 	      System.out.println(user.getPassword());
@@ -49,10 +49,10 @@ public class UserDAO {
 	    }
 	  }
 	
-	public int checkSignIn(String userName,String Password) {
+	public int checkSignIn(User u) {
 	    try {
 	      User user = jdbcTemplate.queryForObject(SQL_SELECT_BY_USER_PASS,
-	          BeanPropertyRowMapper.newInstance(User.class), userName ,Password);
+	          BeanPropertyRowMapper.newInstance(User.class), u.getUserName() , u.getPassword());
 	      System.out.println(user.getUserId());
 	      System.out.println(user.getUserName());
 	      System.out.println(user.getPassword());
