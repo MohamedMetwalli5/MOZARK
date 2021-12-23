@@ -1,14 +1,14 @@
 package software.project.backend.controller;
 
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+import software.project.backend.Model.User;
 import software.project.backend.service.AuthenticationService;
 import software.project.backend.service.userService;
-
+@RestController
+@CrossOrigin
 public class AuthenticationController {
     AuthenticationService service=new AuthenticationService();
     @PostMapping("/signup")
@@ -26,9 +26,10 @@ public class AuthenticationController {
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
     @PostMapping("/signin")
-    public ResponseEntity<String> signinController( @RequestBody String dataSent){
-        String status=service.signIn(dataSent);
-        if (status!=null)  return new ResponseEntity<>(status, HttpStatus.OK);
+    public ResponseEntity<String> signinController(@RequestBody String dataSent){
+        JSONObject user =service.signIn(dataSent);
+        System.out.println(user);
+        if (user!=null)  return new ResponseEntity<>(user.toString(), HttpStatus.OK);
         return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
 }

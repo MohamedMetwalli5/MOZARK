@@ -2,10 +2,7 @@ package software.project.backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import software.project.backend.service.adminService;
 
 @RestController
@@ -20,6 +17,12 @@ public class AdminController {
     @PostMapping("/admin/updateProduct")
     public ResponseEntity<Boolean> updateProductController(@RequestBody String temp){
         if (service.UpdateProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
+        return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
+    }
+    @GetMapping("/admin/delete/{productName}")
+    public ResponseEntity<Boolean> deleteProduct(@PathVariable("productName") String temp){
+        System.out.println(temp);
+        if(service.deleteProduct(temp)) return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
 

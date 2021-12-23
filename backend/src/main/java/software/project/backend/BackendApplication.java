@@ -12,32 +12,10 @@ import software.project.backend.Model.Product;
 import software.project.backend.Model.User;
 
 @SpringBootApplication
-public class BackendApplication implements CommandLineRunner {
+public class BackendApplication  {
 
-	@Autowired
-    private JdbcTemplate jdbcTemplate;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-	
-	 @Override
-	    public void run(String... args) throws Exception {
-	       ProductDAO ui = new ProductDAO() ;
-	       Product p = new Product();
-	       p.setCategoryName("fruits");
-	       p.setDescription("ggggggggggggggggg");
-	       p.setImage(null);
-	       p.setName("prosuct 100000000");
-	       p.setPrice(2.0);
-	       p.setQuantity(4);
-	       p.setProductId(1);
-
-	       boolean uur = ui.insertProduct(p);
-            System.out.println(uur);
-	         
-	    }
-	 
-	
 
 }

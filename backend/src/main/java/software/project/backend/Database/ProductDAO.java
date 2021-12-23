@@ -18,12 +18,10 @@ public class ProductDAO {
 
 	private final String SQL_INSERT_PRODUCT = "INSERT INTO PRODUCT (categoryName,name,description,price,quantity,discount,image) VALUES (?,?,?,?,?,?,?)";
 	private final String SQL_UPDATE_PRODUCT = "UPDATE PRODUCT SET name=?, description=?, price=?, discount=? WHERE productId=?";
-	 private JdbcTemplate jdbcTemplate;
-	 
+	private JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+	private final String SQL_DELETE_PRODUCT = "DELETE FROM PRODUCT WHERE name=?";
 	 public ProductDAO() {
-		 this.jdbcTemplate = new JdbcTemplate(dataSource()) ;
 	 }
-	 
 	 @Bean
 	 @Primary
 	 public static DataSource dataSource() {
@@ -35,7 +33,16 @@ public class ProductDAO {
 				 .driverClassName("com.mysql.cj.jdbc.Driver")
 				 .build();
 	 }
-	
+	public boolean deleteProduct(String n) {
+
+		int result = jdbcTemplate.update(SQL_DELETE_PRODUCT,n);
+
+		if (result > 0) {
+			System.out.println("A new has been deleted");
+			return true ;
+		}
+		return false ;
+	}
 	public boolean insertProduct(Product p) {
 	     
 	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),null);
@@ -48,9 +55,9 @@ public class ProductDAO {
 		}
 	
 	public boolean updateProduct(Product p) {
-	     
-        int result = jdbcTemplate.update(SQL_UPDATE_PRODUCT,p.getName(), p.getDescription(), p.getPrice() ,p.getDiscount(),p.getProductId());
-        if (result > 0) {
+
+		int result = jdbcTemplate.update(SQL_UPDATE_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),null,p.getProductId());
+		if (result > 0) {
             System.out.println("A new row has been updated.");
             return true ;
 	        }
