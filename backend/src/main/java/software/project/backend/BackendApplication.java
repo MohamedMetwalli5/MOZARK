@@ -23,7 +23,7 @@ public class BackendApplication implements CommandLineRunner {
 	
 	 @Override
 	    public void run(String... args) throws Exception {
-	       ProductDAO ui = new ProductDAO(jdbcTemplate) ;
+	       ProductDAO ui = new ProductDAO() ;
 	       Product p = new Product();
 	       p.setCategoryName("fruits");
 	       p.setDescription("ggggggggggggggggg");

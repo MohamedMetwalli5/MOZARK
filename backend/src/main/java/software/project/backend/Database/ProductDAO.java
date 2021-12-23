@@ -1,5 +1,10 @@
 package software.project.backend.Database;
 
+import javax.sql.DataSource;
+
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,8 +20,20 @@ public class ProductDAO {
 	private final String SQL_UPDATE_PRODUCT = "UPDATE PRODUCT SET name=?, description=?, price=?, discount=? WHERE productId=?";
 	 private JdbcTemplate jdbcTemplate;
 	 
-	 public ProductDAO(JdbcTemplate jdbcTemplate) {
-		 this.jdbcTemplate = jdbcTemplate ;
+	 public ProductDAO() {
+		 this.jdbcTemplate = new JdbcTemplate(dataSource()) ;
+	 }
+	 
+	 @Bean
+	 @Primary
+	 public static DataSource dataSource() {
+		 return DataSourceBuilder
+				 .create()
+				 .username("sql4460814")
+				 .password("Ruwqt9etyE")
+				 .url("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4460814")
+				 .driverClassName("com.mysql.cj.jdbc.Driver")
+				 .build();
 	 }
 	
 	public boolean insertProduct(Product p) {
