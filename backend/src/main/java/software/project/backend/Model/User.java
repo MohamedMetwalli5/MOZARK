@@ -1,7 +1,7 @@
 package software.project.backend.Model;
 
 public class User implements Imodel{
-	private Long userId;
+	private int userId;
 	private String userName;
 	private String firstName;
 	private String lastName;
@@ -13,22 +13,14 @@ public class User implements Imodel{
 	{
 		
 	}
-	public User(long userId,String username, String firstName, String lastName ,String password , String phone, String address) {
-		this.userId = userId ;
-		this.userName = username ;
-		this.firstName = firstName ;
-		this.lastName = lastName ;
-		this.password = password ;
-		this.phone = phone ;
-		this.Address = address ;
-	}
 	
-	public Long getId() {
+	
+	public int getUserId() {
 		return this.userId;
 	}
 
-	public void setId(Long id) {
-		this.userId = id;
+	public void setUserId(int i) {
+		this.userId = i;
 	}
 
 

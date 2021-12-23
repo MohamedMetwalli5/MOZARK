@@ -3,8 +3,7 @@ package software.project.backend.Model;
 import java.util.ArrayList;
 
 public class Product implements Imodel{
-    private String productId;
-    private String categoryId;
+    private int productId;
     private String name;
     private String categoryName;
     private String description;
@@ -14,20 +13,12 @@ public class Product implements Imodel{
     private String image;
 
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
-    }
-
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getName() {

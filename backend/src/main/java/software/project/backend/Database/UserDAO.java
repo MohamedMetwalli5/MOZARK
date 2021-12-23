@@ -5,14 +5,13 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import software.project.backend.Model.User;
-import software.project.backend.Model.UserMapper;
 
 public class UserDAO {
 
 
 	private final String SQL_INSERT_USER = "INSERT INTO user (userName,password,firstName,lastName,Address,Phone) VALUES (?,?,?,?,?,?)";
-	private final String SQL_DELETE_PERSON = "delete from people where id = ?";
-	private final String SQL_UPDATE_PERSON = "update people set first_name = ?, last_name = ?, age  = ? where id = ?";
+	private final String SQL_SELECT_BY_USERNAME = "SELECT * FROM user WHERE userName=?";
+	private final String SQL_SELECT_BY_USER_PASS = "SELECT * FROM user WHERE userName=? AND password=?";
 	private final String SQL_GET_ALL = "select * from people";
 	private final String SQL_INSERT_PERSON = "insert into people(id, first_name, last_name, age) values(?,?,?,?)";
 	private final String SQL_FIND_USER = "select * from user where userName = ?";
@@ -33,26 +32,41 @@ public class UserDAO {
 	        return false ;
 		}
 	
-	public User getUserByUserName(String username) {
-		return jdbcTemplate.queryForObject(SQL_FIND_USER, new Object[] { username }, new UserMapper());
-	}
-	
-	public User findByUserName(String username) {
+	public boolean findByUserName(User u) {
 	    try {
-	      User user = jdbcTemplate.queryForObject("SELECT * FROM user WHERE userName=?",
-	          BeanPropertyRowMapper.newInstance(User.class), username);
-	      System.out.println(user.getId());
+	      User user = jdbcTemplate.queryForObject(SQL_SELECT_BY_USERNAME,
+	          BeanPropertyRowMapper.newInstance(User.class), u.getUserName());
+	      System.out.println(user.getUserId());
 	      System.out.println(user.getUserName());
 	      System.out.println(user.getPassword());
 	      System.out.println(user.getFirstName());
 	      System.out.println(user.getLastName());
 	      System.out.println(user.getAddress());
 	      System.out.println(user.getPhone());
-	      return user;
+	      return true;
 	    } catch (IncorrectResultSizeDataAccessException e) {
-	      return null;
+	      return false;
 	    }
 	  }
+	
+	public int checkSignIn(User u) {
+	    try {
+	      User user = jdbcTemplate.queryForObject(SQL_SELECT_BY_USER_PASS,
+	          BeanPropertyRowMapper.newInstance(User.class), u.getUserName() , u.getPassword());
+	      System.out.println(user.getUserId());
+	      System.out.println(user.getUserName());
+	      System.out.println(user.getPassword());
+	      System.out.println(user.getFirstName());
+	      System.out.println(user.getLastName());
+	      System.out.println(user.getAddress());
+	      System.out.println(user.getPhone());
+	      return user.getUserId();
+	    } catch (IncorrectResultSizeDataAccessException e) {
+	      return 0;
+	    }
+	  }
+	
+	
 	
 	
 	
