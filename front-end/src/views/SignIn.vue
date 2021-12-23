@@ -38,8 +38,8 @@ export default {
     };
   },
   methods: {
-    parseText: function (resp) {
-        return resp.text();
+    parseJSON: function (resp) {
+        return resp.JSON();
     },
     checkStatus: function (resp) {
         console.log('status');
@@ -66,8 +66,10 @@ export default {
           }).then(this.checkStatus)
           .then(this.parseJSON);
 
+          console.log(response.sessionID + "    " + response.role);
+
           this.$store.commit('saveUserData',{
-              _id: response,
+              _id: response.sessionID,
               _name: this.form.userName
           });
           console.log("user name that stored in the Vuex" + this.$store.state.userID);
@@ -78,8 +80,8 @@ export default {
       },
     async SignIn(){
       const valid = await this.login();
-      if (valid === true) {
-          this.$router.push({ name: "SignUp" });
+      if (valid) {
+          this.$router.push({ name: "AdminSettings" });
       } else {
           alert("Please try agian, email or password is wrong :(");
       }
