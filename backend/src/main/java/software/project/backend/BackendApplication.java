@@ -23,18 +23,18 @@ public class BackendApplication implements CommandLineRunner {
 	
 	 @Override
 	    public void run(String... args) throws Exception {
-//	       ProductDAO ui = new ProductDAO(jdbcTemplate) ;
-//	       Product p = new Product();
-//	       p.setCategoryName("fruits");
-//	       p.setDescription("ggggggggggggggggg");
-//	       p.setImage(null);
-//	       p.setName("prosuct 100000000");
-//	       p.setPrice(2.0);
-//	       p.setQuantity(4);
-//	       p.setProductId(1);
-//	       
-//	       boolean uur = ui.updateProduct(p);
-//            System.out.println(uur);
+	       ProductDAO ui = new ProductDAO(jdbcTemplate) ;
+	       Product p = new Product();
+	       p.setCategoryName("fruits");
+	       p.setDescription("ggggggggggggggggg");
+	       p.setImage(null);
+	       p.setName("prosuct 100000000");
+	       p.setPrice(2.0);
+	       p.setQuantity(4);
+	       p.setProductId(1);
+
+	       boolean uur = ui.insertProduct(p);
+            System.out.println(uur);
 	         
 	    }
 	 

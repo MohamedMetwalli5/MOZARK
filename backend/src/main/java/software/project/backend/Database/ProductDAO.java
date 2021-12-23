@@ -11,8 +11,8 @@ import software.project.backend.Model.UserMapper;
 public class ProductDAO {
 
 
-	private final String SQL_INSERT_PRODUCT = "INSERT INTO product (categoryName,name,description,price,quantity,discount,image) VALUES (?,?,?,?,?,?,?)";
-	private final String SQL_UPDATE_PRODUCT = "UPDATE product SET name=?, description=?, price=?, discount=? WHERE productId=?";
+	private final String SQL_INSERT_PRODUCT = "INSERT INTO PRODUCT (categoryName,name,description,price,quantity,discount,image) VALUES (?,?,?,?,?,?,?)";
+	private final String SQL_UPDATE_PRODUCT = "UPDATE PRODUCT SET name=?, description=?, price=?, discount=? WHERE productId=?";
 	 private JdbcTemplate jdbcTemplate;
 	 
 	 public ProductDAO(JdbcTemplate jdbcTemplate) {
@@ -21,7 +21,7 @@ public class ProductDAO {
 	
 	public boolean insertProduct(Product p) {
 	     
-	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getName(), p.getDescription(), p.getPrice() ,p.getDiscount(),p.getProductId());
+	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),null);
 	         
 	        if (result > 0) {
 	            System.out.println("A new row has been inserted.");
