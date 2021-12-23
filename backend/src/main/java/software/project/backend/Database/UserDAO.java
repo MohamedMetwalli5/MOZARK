@@ -20,9 +20,16 @@ public class UserDAO {
 	 public UserDAO(JdbcTemplate jdbcTemplate) {
 		 this.jdbcTemplate = jdbcTemplate ;
 	 }
-	
+
 	public boolean insertUser(User user) {
-	     
+
+		System.out.println(user.getUserName()+
+				" " +user.getPassword()+
+				" "+user.getFirstName()+
+				" "+user.getLastName()+
+				" "+user.getAddress()+
+				" "+user.getPhone()
+		);
 	        int result = jdbcTemplate.update(SQL_INSERT_USER,user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),user.getAddress(),user.getPhone());
 	         
 	        if (result > 0) {

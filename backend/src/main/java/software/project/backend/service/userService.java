@@ -11,35 +11,5 @@ import software.project.backend.sercuirty.Singelton;
 import software.project.backend.sercuirty.passwordOperations;
 
 public class userService {
-    private Director director=new Director();
-    private Singelton trackingSystem;
-    private passwordOperations passwordOperations=new passwordOperations();
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    private UserDAO userDAO=new UserDAO(jdbcTemplate);
-    public boolean signUp(String dataSent){
-        User user = (User) director.composeModel("user",dataSent);
-        System.out.println(user.getUserName()+" "+user.getFirstName()+" "+user.getPassword());
-        return userDAO.insertUser(user);
-    }
-    public boolean checkUserName(String userName){
-        System.out.println(userName);
-        return !userDAO.findByUserName(userName);
-    }
-    public String signIn(String dataSent){
-        String userName;
-        String password;
-        try {
-            JSONObject obj = new JSONObject(dataSent);
-            userName=obj.getString("userName");
-            password=passwordOperations.passswordToHash(obj.getString("password"));
-            System.out.println(userName+"-->"+password);
-        } catch (JSONException e) {
-            return null;
-        }
-        String temp= String.valueOf(userDAO.checkSignIn(userName,password));
-        if(temp==null) return null;
-        trackingSystem= Singelton.getInstance();
-        return trackingSystem.addOnlineUser(temp);
-    }
+
 }

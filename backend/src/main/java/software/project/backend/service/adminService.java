@@ -9,7 +9,7 @@ import software.project.backend.Model.builder.Director;
 public class adminService {
     private Director director=new Director();
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate=new JdbcTemplate();
     private ProductDAO productOperation=new ProductDAO(jdbcTemplate);
     public boolean addProduct(String dataSent){
         Product product=(Product) director.composeModel("product",dataSent);
