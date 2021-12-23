@@ -34,7 +34,7 @@ public class userBuilder implements Ibuilder {
        private void buildPhone(String phone) {
         this.user.setPhone(phone);
        }
-
+       private void buildRole(boolean role){this.user.setRole(role);}
 
        @Override
        public boolean comopse(String sentData) {
@@ -47,6 +47,7 @@ public class userBuilder implements Ibuilder {
          buildPassword(obj.getString("password"));
          buildAddress(obj.getString("Address"));
          buildPhone(obj.getString("phone"));
+         buildRole(false);
         } catch (JSONException e) {
          System.out.println("user problem");
          return false;

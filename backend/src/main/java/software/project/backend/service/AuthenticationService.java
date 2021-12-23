@@ -15,8 +15,7 @@ public class AuthenticationService {
     private Singelton trackingSystem;
     private software.project.backend.sercuirty.passwordOperations passwordOperations=new passwordOperations();
     @Autowired
-    private JdbcTemplate jdbcTemplate=new JdbcTemplate();
-    private UserDAO userDAO=new UserDAO(jdbcTemplate);
+    private UserDAO userDAO=new UserDAO();
     public boolean signUp(String dataSent){
         User user = (User) director.composeModel("user",dataSent);
         System.out.println(user.getUserName()+
@@ -32,20 +31,28 @@ public class AuthenticationService {
         System.out.println(userName);
         return !userDAO.findByUserName(userName);
     }
-    public String signIn(String dataSent){
+    public JSONObject signIn(String dataSent){
         String userName;
         String password;
         try {
             JSONObject obj = new JSONObject(dataSent);
             userName=obj.getString("userName");
             password=passwordOperations.passswordToHash(obj.getString("password"));
-            System.out.println(userName+"-->"+password);
+            System.out.println(userName+"-->"+password+"-->"+obj.getString("password"));
         } catch (JSONException e) {
             return null;
         }
-        String temp= String.valueOf(userDAO.checkSignIn(userName,password));
+        User temp=userDAO.checkSignIn(userName,password);
         if(temp==null) return null;
         trackingSystem= Singelton.getInstance();
-        return trackingSystem.addOnlineUser(temp);
+        String sessionID=trackingSystem.addOnlineUser(String.valueOf(temp.getUserId()));
+        JSONObject object=new JSONObject();
+        try {
+            object.put("sessionID",sessionID);
+            object.put("role",temp.getRole());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 }

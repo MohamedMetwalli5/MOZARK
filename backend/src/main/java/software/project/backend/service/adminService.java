@@ -19,4 +19,7 @@ public class adminService {
         Product product=(Product) director.composeModel("product",dataSent);
         return productOperation.updateProduct(product);
     }
+    public boolean deleteProduct(String name){
+        return productOperation.deleteProduct(name);
+    }
 }
