@@ -3,6 +3,8 @@
 ![Database](https://img.shields.io/badge/Database-MySQL%20-orange.svg)
 ![Scrum Software Tool](https://img.shields.io/badge/Scrum_Software_Tool-Jira%20-blue.svg)
 ![License](https://img.shields.io/badge/License-GPL&ndash;3.0%20-purple.svg)
+Sprint 1 completed : 
+![image](https://user-images.githubusercontent.com/58489322/147325001-02b8964d-23a7-47a9-b0e1-47458e314281.png)
 
 # MOZARK 
 An E-commerce Website.<br>
