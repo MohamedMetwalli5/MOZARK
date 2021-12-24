@@ -28,7 +28,6 @@ public class AuthenticationService {
         return userDAO.insertUser(user);
     }
     public boolean checkUserName(String userName){
-        System.out.println(userName);
         return !userDAO.findByUserName(userName);
     }
     public JSONObject signIn(String dataSent){

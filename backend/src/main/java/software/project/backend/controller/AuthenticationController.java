@@ -28,8 +28,8 @@ public class AuthenticationController {
     @PostMapping("/signin")
     public ResponseEntity<String> signinController(@RequestBody String dataSent){
         JSONObject user =service.signIn(dataSent);
-        System.out.println(user);
         if (user!=null)  return new ResponseEntity<>(user.toString(), HttpStatus.OK);
+        System.out.println(user.toString());
         return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
 }

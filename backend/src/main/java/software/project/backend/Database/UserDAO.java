@@ -61,6 +61,7 @@ public class UserDAO {
 				  BeanPropertyRowMapper.newInstance(User.class), u);
 	      return true;
 	    } catch (IncorrectResultSizeDataAccessException e) {
+			System.out.println("false");
 	      return false;
 	    }
 	  }
