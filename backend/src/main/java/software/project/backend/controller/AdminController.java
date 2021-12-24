@@ -14,7 +14,7 @@ public class AdminController {
         if (service.addProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
-    @PostMapping("/admin/updateProduct")
+    @PutMapping("/admin/updateProduct")
     public ResponseEntity<Boolean> updateProductController(@RequestBody String temp){
         if (service.UpdateProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);

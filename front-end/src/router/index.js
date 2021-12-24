@@ -15,63 +15,62 @@ import ShoppingCart from '../views/ShoppingCart.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'SignUp',
-    component: SignUp
-  },
-  {
-    path: '/SignIn',
-    name: 'SignIn',
-    component: SignIn
-  },{
-    path: '/Home',
-    name: 'Home',
-    component: Home
-  },{
-    path: '/Settings',
-    name: 'Settings',
-    component: Settings
-  },{
-    path: '/Clothing',
-    name: 'Clothing',
-    component: Clothing
-  },{
-    path: '/Electronics',
-    name: 'Electronics',
-    component: Electronics
-  },{
-    path: '/Shoes',
-    name: 'Shoes',
-    component: Shoes
-  },{
-    path: '/Watches',
-    name: 'Watches',
-    component: Watches
-  },{
-    path: '/Jewellery',
-    name: 'Jewellery',
-    component: Jewellery
-  },{
-    path: '/Sports',
-    name: 'Sports',
-    component: Sports
-  },{
-    path: '/AdminSettings',
-    name: 'AdminSettings',
-    component: AdminSettings
-  },{
-    path: '/ShoppingCart',
-    name: 'ShoppingCart',
-    component: ShoppingCart
-  },
+const routes = [{
+        path: '/',
+        name: 'SignUp',
+        component: SignUp
+    },
+    {
+        path: '/SignIn',
+        name: 'SignIn',
+        component: SignIn
+    }, {
+        path: '/Home',
+        name: 'Home',
+        component: Home
+    }, {
+        path: '/Settings',
+        name: 'Settings',
+        component: Settings
+    }, {
+        path: '/Clothing',
+        name: 'Clothing',
+        component: Clothing
+    }, {
+        path: '/Electronics',
+        name: 'Electronics',
+        component: Electronics
+    }, {
+        path: '/Shoes',
+        name: 'Shoes',
+        component: Shoes
+    }, {
+        path: '/Watches',
+        name: 'Watches',
+        component: Watches
+    }, {
+        path: '/Jewellery',
+        name: 'Jewellery',
+        component: Jewellery
+    }, {
+        path: '/Sports',
+        name: 'Sports',
+        component: Sports
+    }, {
+        path: '/AdminSettings',
+        name: 'AdminSettings',
+        component: AdminSettings
+    }, {
+        path: '/ShoppingCart',
+        name: 'ShoppingCart',
+        component: ShoppingCart
+    },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router
