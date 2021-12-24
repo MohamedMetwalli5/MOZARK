@@ -15,7 +15,7 @@ public class productBuilder implements Ibuilder {
     private void buildPrice(double price){this.productModel.setPrice(price);}
     private void buildQuantity(int quantity){this.productModel.setQuantity(quantity);}
     private void buildDiscount(double discount){this.productModel.setDiscount(discount);}
-    private void buildImage(){this.productModel.setImage("");}
+    private void buildImage(String image){this.productModel.setImage(image);}
     @Override
     public boolean comopse(String sentData) {
         this.productModel=new Product();
@@ -27,7 +27,7 @@ public class productBuilder implements Ibuilder {
             buildPrice(obj.getDouble("price"));
             buildQuantity(obj.getInt("amount"));
             buildDiscount(obj.getDouble("discount"));
-            buildImage();
+            buildImage(obj.getString("image"));
         } catch (JSONException e) {
             System.out.println("product problem");
             return false;

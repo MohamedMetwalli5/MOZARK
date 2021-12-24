@@ -45,7 +45,7 @@ public class ProductDAO {
 	}
 	public boolean insertProduct(Product p) {
 	     
-	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),null);
+	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),p.getImage());
 	         
 	        if (result > 0) {
 	            System.out.println("A new row has been inserted.");
