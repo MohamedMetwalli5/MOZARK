@@ -19,7 +19,7 @@ public class AdminController {
         if (service.UpdateProduct(temp)) return new ResponseEntity<>(true, HttpStatus.OK);
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
-    @DeleteMapping ("/admin/delete/{productName}")
+    @DeleteMapping ("/admin/{productName}")
     public ResponseEntity<Boolean> deleteProduct(@PathVariable("productName") String temp){
         System.out.println(temp);
         if(service.deleteProduct(temp)) return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
