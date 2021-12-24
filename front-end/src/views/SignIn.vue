@@ -39,10 +39,6 @@ export default {
   },
   methods: {
     parseJSON: function (resp) {
-      //console.log("vvvvvvvvvvv");
-      //console.log(resp.text());
-      //let p = JSON.parse(resp.text());
-      //console.log(p);
         return resp.text();
     },
     checkStatus: function (resp) {

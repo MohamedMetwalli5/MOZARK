@@ -99,7 +99,6 @@ export default {
           return resp.text();
       },
       checkStatus: function (resp) {
-        console.log("nnnnnnnnnnnnnnnnnnnnnnnnnn");
         console.log(resp);
           if (resp.status >= 200 && resp.status < 300) {
               console.log('good status');
@@ -116,7 +115,6 @@ export default {
         return /^[a-zA-Z]+$/.test(first_name) && /^[a-zA-Z]+$/.test(last_name);
       },
       async CheckUserName(){
-        console.log("nnnnnnnnnnnnnnnnnnnnnnnnnn");
         try{
           const response = await fetch("http://localhost:8080/checkUsername/" + this.user.userName,{ 
               method: "get",

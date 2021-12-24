@@ -19,8 +19,8 @@
        type="button"
        value="Search"> -->
        </li> 
-       <li><a class="category-option" id="navbar-option"  @click="ShoppingCartNavigator()">🛒</a></li>
-       <li><a class="category-option" id="navbar-option"  @click="SettingsNavigator()">⚙️</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="ShoppingCartNavigator">🛒</a></li>
+       <li><a class="category-option" id="navbar-option"  @click="SettingsNavigator">⚙️</a></li>
     </ul>
   </div>
 </template>
@@ -28,24 +28,31 @@
 <script>
 export default {
   name: "TheNavBar",
-  props: {
-    IsAdmin: Boolean,
-  },
   data() {
     return {
     };
   },
   methods: {
     SettingsNavigator(){
-      if(this.IsAdmin === true){
-        window.location.href='/AdminSettings';
+      if(this.isAdmin === ''){
+        alert("session is over \n Please SignIn again");
+        this.$router.push({ name: "SignIn" });
+        return;
+      }
+      if(this.isAdmin){
+        this.$router.push({ name: "AdminSettings" }).catch(() => {});
       }else{
-        window.location.href='/Settings';
+        this.$router.push({ name: "Settings" }).catch(() => {});
       }
     },
     ShoppingCartNavigator(){
-      window.location.href='/ShoppingCart';
+      this.$router.push({ name: "ShoppingCart" });
     },
+  },
+  computed:{
+    isAdmin(){
+      return this.$store.state.role;
+    }
   },
 };
 </script>

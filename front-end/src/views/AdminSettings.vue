@@ -6,7 +6,6 @@
       <input
           type="password"
           placeholder="Old Password"
-          value=""
           ref="PasswordRef"
           id = "user-old-password"
           v-model="password"
@@ -15,7 +14,6 @@
         <input
           type="password"
           placeholder="New Password"
-          value=""
           ref="PasswordRef"
           id = "user-new-password"
           v-model="password"
@@ -45,7 +43,6 @@
         <input
           type="text"
           placeholder="Product Name"
-          value=""
           ref="ProductRef"
           v-model="productAdding.name"
           id = "product-name(add)"
@@ -54,7 +51,6 @@
         <input
           type="text"
           placeholder="Product Price in $"
-          value=""
           ref="ProductPriceRef"
           v-model="productAdding.price"
           id = "product-price(add)"
@@ -64,7 +60,6 @@
         <input
           type="text"
           placeholder="Quantity"
-          value=""
           ref="QuantityRef"
           v-model="productAdding.amount"
           id = "quantity(add)"
@@ -73,7 +68,6 @@
         />
         <textarea type="text"  
             class="text-box" 
-            value=""
             ref="DescriptionRef"
             v-model="productAdding.description"
             id = "description(add)"
@@ -94,7 +88,7 @@
           value="Add"
           class="save-button"
           id = "add-product-save"
-          @click="Save('add-product-save')"
+          @click="Save('add')"
         />   
     </div>
     <div class="setting-option">
@@ -113,7 +107,7 @@
           value="Remove"
           class="save-button"
           id = "add-product-save"
-          @click="Save('remove-product-save')"
+          @click="Save('delete')"
         />   
     </div>
     <div class="setting-option">
@@ -174,7 +168,7 @@
           value="Change"
           class="save-button"
           id = "add-product-save"
-          @click="Save('change-product-save')"
+          @click="Save('change')"
         />   
     </div>
     <Footer/>
@@ -190,9 +184,6 @@ export default {
     "Footer":Footer,
   },
   name: "AdminSettings",
-  props: {
-    msg: String,
-  },
   data() {
     return {
       productAdding:{
@@ -217,15 +208,11 @@ export default {
     onproImageSelected: function(event) {
       this.fd = event.target.files[0];
       this.getImageBase64(this.fd);
-      // console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-      // console.log(this.image);
     },
     getImageBase64: function(file) {
       let reader = new FileReader();
       reader.readAsDataURL(file);
-      //console.log("bbbbbbbbbbbbbbb");
       reader.onload = () => {
-        //console.log("zzzzzz");
         this.productAdding.image =  reader.result;
       };
       /*reader.error = () => {
@@ -283,8 +270,7 @@ export default {
     Save(id){
       if(id === "password-save"){
         this.CheckPassword();
-      }else if(id === "add-product-save" ){
-           console.log(this.validAdding());
+      }else if(id === "add" ){
         if(this.validAdding()){
             this.addProduct();
             console.log(this.productAdding);
@@ -292,14 +278,14 @@ export default {
         }else{
             alert("Please, Enter Valid Information");
         } 
-      }else if(id === "remove-product-save"){
+      }else if(id === "delete"){
 
         if(this.productDeleting.name.length > 0){
           this.deleteProduct();
         }else{
             alert("Please, Enter an Existing Product Name");
         } 
-      }else if(id === "change-product-save"){
+      }else if(id === "change"){
         let product_name = document.getElementById("product-name(change)").value;
         let product_price = document.getElementById("product-price(change)").value;
         let product_quantity = document.getElementById("quantity(change)").value;

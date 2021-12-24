@@ -8,7 +8,6 @@ export const store = new Vuex.Store({
     state: {
         userID:'',
         userName: '',
-        userImage: "",
         role:""
     },
     getters: {
@@ -16,19 +15,26 @@ export const store = new Vuex.Store({
     },
     mutations: {
       initialiseStore(state) {
-        if (localStorage.getItem('userID') ) {
-            state.userID = localStorage.getItem('userID');
-            state.userName = localStorage.getItem('userName');
-            state.userImage = localStorage.getItem('userImage');
+        if (localStorage.getItem('timestamp')) {
+            if(new Date().getTime() - localStorage.getItem('timestamp')  > 10000){
+                state.userID = '';
+                state.userName = '';
+                state.role = '';
+            }else{
+                state.userID = localStorage.getItem('userID');
+                state.userName = localStorage.getItem('userName');
+                state.role = localStorage.getItem('role');
+            }
         }
       },
       saveUserData:(state , data) =>{
-        console.log("vvvvvvvv");
         state.userID = data._id;
         state.userName = data._name;
         state.role = data._role;
         localStorage.setItem('userID', data._id);
         localStorage.setItem('userName', data._name);
+        localStorage.setItem('role', data._role);
+        localStorage.setItem('timestamp', new Date().getTime())
       },
 
     },
