@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
         userID:'',
         userName: '',
         userImage: "",
+        role:""
     },
     getters: {
         
@@ -22,8 +23,10 @@ export const store = new Vuex.Store({
         }
       },
       saveUserData:(state , data) =>{
+        console.log("vvvvvvvv");
         state.userID = data._id;
         state.userName = data._name;
+        state.role = data._role;
         localStorage.setItem('userID', data._id);
         localStorage.setItem('userName', data._name);
       },

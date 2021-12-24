@@ -47,8 +47,8 @@
           placeholder="Product Name"
           value=""
           ref="ProductRef"
+          v-model="productAdding.name"
           id = "product-name(add)"
-          v-model="text"
           class="text-box"
         />
         <input
@@ -56,8 +56,8 @@
           placeholder="Product Price in $"
           value=""
           ref="ProductPriceRef"
+          v-model="productAdding.price"
           id = "product-price(add)"
-          v-model="text"
           class="text-box"
           style="width : 170px"
         />
@@ -66,25 +66,28 @@
           placeholder="Quantity"
           value=""
           ref="QuantityRef"
+          v-model="productAdding.amount"
           id = "quantity(add)"
-          v-model="text"
           class="text-box"
           style="width : 100px"
         />
         <textarea type="text"  
             class="text-box" 
-            v-model="text" 
             value=""
             ref="DescriptionRef"
+            v-model="productAdding.description"
             id = "description(add)"
             style="width : 400px; height:80px; padding:10px; margin-bottom:0px" 
             placeholder="Description">
         </textarea>
         <div style="margin-left:10px;">
-            <form id="form" action="/action_page.php">
-                <input type="file" class="product-picture" name="filename">
-                <!-- <input type="submit" class="save-button" style="background-color: orange"> -->
-            </form>
+            <input
+                type="file"
+                @change="onproImageSelected"
+                class="product-picture"
+                name="filename"
+                ref="fileinput"
+            />
         </div>
         <input
           type="button"
@@ -96,24 +99,13 @@
     </div>
     <div class="setting-option">
         <h1>Remove Product</h1>
-        <div class="dropdown">
-            <button class="dropbtn">{{CategoryNameForRemoving}}</button>
-            <div class="dropdown-content">
-                <a @click="SetCategory('Clothing','2')">Clothing</a>
-                <a @click="SetCategory('Electronics','2')">Electronics</a>
-                <a @click="SetCategory('Shoes','2')">Shoes</a>
-                <a @click="SetCategory('Watches','2')">Watches</a>
-                <a @click="SetCategory('Jewellery','2')">Jewellery</a>
-                <a @click="SetCategory('Sports','2')">Sports</a>
-            </div>
-        </div>
         <input
           type="text"
           placeholder="Product Name"
           value=""
           ref="ProductRef"
+          v-model="productDeleting.name"
           id = "product-name(remove)"
-          v-model="text"
           class="text-box"
         />
         <input
@@ -143,7 +135,6 @@
           value=""
           ref="ProductRef"
           id = "product-name(change)"
-          v-model="text"
           class="text-box"
           style="width : 180px"
         />
@@ -153,7 +144,6 @@
           value=""
           ref="ProductPriceRef"
           id = "product-price(change)"
-          v-model="text"
           class="text-box"
           style="width : 210px"
         />
@@ -163,13 +153,11 @@
           value=""
           ref="QuantityRef"
           id = "quantity(change)"
-          v-model="text"
           class="text-box"
           style="width : 140px"
         />
         <textarea type="text"  
             class="text-box" 
-            v-model="text" 
             value=""
             ref="DescriptionRef"
             id = "description(change)"
@@ -179,7 +167,6 @@
         <div style="margin-left:10px;">
             <form id="form" action="/action_page.php">
                 <input type="file" class="product-picture" name="filename">
-                <!-- <input type="submit" class="save-button" style="background-color: orange"> -->
             </form>
         </div>
         <input
@@ -208,14 +195,46 @@ export default {
   },
   data() {
     return {
+      productAdding:{
+        name:'',
+        categoryName:'',
+        description:'',
+        price:'',
+        amount:'',
+        discount: 0,
+        image:''
+      },
+      productDeleting:{
+        name:'',
+      },
         CategoryNameForAdding : "Choose Category",
         CategoryNameForRemoving : "Choose Category",
         CategoryNameForChanging : "Choose Category",
+        password:'',
     };
   },
   methods: {
+    onproImageSelected: function(event) {
+      this.fd = event.target.files[0];
+      this.getImageBase64(this.fd);
+      // console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      // console.log(this.image);
+    },
+    getImageBase64: function(file) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      //console.log("bbbbbbbbbbbbbbb");
+      reader.onload = () => {
+        //console.log("zzzzzz");
+        this.productAdding.image =  reader.result;
+      };
+      /*reader.error = () => {
+        alert("Error !!!");
+      };*/
+    },
     SetCategory(ChoosenCategoryName, OptionNumber){
         if(OptionNumber === '1'){
+            this.productAdding.categoryName = ChoosenCategoryName;
             this.CategoryNameForAdding = ChoosenCategoryName;
         }else if(OptionNumber === '2'){
             this.CategoryNameForRemoving = ChoosenCategoryName;
@@ -235,29 +254,48 @@ export default {
           alert("Please, Enter a New Valid Password");
         }
     },
+    validAdding(){
+        return this.productAdding.categoryName.length > 1
+                  && this.productAdding.name.length > 0 
+                  && this.productAdding.price.length > 0 
+                  &&this.productAdding.amount.length > 0 
+                  && this.productAdding.description.length > 0
+    },
+    addProduct(){
+        fetch(
+          "http://localhost:8080/admin/addProduct/",
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.productAdding),
+          }
+        );
+    },
+    deleteProduct(){
+        fetch(
+          "http://localhost:8080/admin/" + this.productDeleting.name,
+          {
+            method: "delete",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+    },
     Save(id){
       if(id === "password-save"){
         this.CheckPassword();
-      }else if(id === "add-product-save"){
-        let product_name = document.getElementById("product-name(add)").value;
-        let product_price = document.getElementById("product-price(add)").value;
-        let product_quantity = document.getElementById("quantity(add)").value;
-        let product_description = document.getElementById("description(add)").value;
-
-        if(this.CategoryName !== "Choose Category" && product_name.length > 0 && product_price.length > 0 && product_quantity.length > 0 && product_description.length > 0){
-            // to-do
-            ///// add the new product details to the database and this is in case if there is no product have this name in the database in the chosen category
-            ///
+      }else if(id === "add-product-save" ){
+           console.log(this.validAdding());
+        if(this.validAdding()){
+            this.addProduct();
+            console.log(this.productAdding);
+            console.log("adding request is sent");
         }else{
             alert("Please, Enter Valid Information");
         } 
       }else if(id === "remove-product-save"){
-        let product_name = document.getElementById("product-name(remove)").value;
 
-        if(product_name.length > 0){
-            // to-do
-            ///// remove the new product details from the database and this is in case if there is a product has this name in the database in the chosen category
-            ///
+        if(this.productDeleting.name.length > 0){
+          this.deleteProduct();
         }else{
             alert("Please, Enter an Existing Product Name");
         } 

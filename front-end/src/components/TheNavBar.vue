@@ -14,7 +14,6 @@
         value=""
         ref="searchRef"
         id = "search-box"
-        v-model="text"
       />
       <!-- <input id="search"
        type="button"

@@ -99,12 +99,16 @@ export default {
           return resp.text();
       },
       checkStatus: function (resp) {
+        console.log("nnnnnnnnnnnnnnnnnnnnnnnnnn");
+        console.log(resp);
           if (resp.status >= 200 && resp.status < 300) {
               console.log('good status');
-              return true;
+              return resp;
           }
           console.log('bad status');
-          return false;
+          return this.parseJSON(resp).then((resp) => {
+            throw resp;
+          });
       },
       CheckFullName(){
         let first_name = this.user.firstName;
@@ -112,13 +116,20 @@ export default {
         return /^[a-zA-Z]+$/.test(first_name) && /^[a-zA-Z]+$/.test(last_name);
       },
       async CheckUserName(){
-        const response = await fetch("http://localhost:8080/checkUsername/" + this.user.email,{ 
-            method: "get",
-            headers: {'Content-Type': 'application/json'}
-        }).then(this.checkStatus)
-        .then(this.parseText);
-        console.log("response of check userName: " + response);
-        return response;
+        console.log("nnnnnnnnnnnnnnnnnnnnnnnnnn");
+        try{
+          const response = await fetch("http://localhost:8080/checkUsername/" + this.user.userName,{ 
+              method: "get",
+              headers: {'Content-Type': 'application/json'}
+          }).then(this.checkStatus)
+          .then(this.parseText);
+          console.log("response of check userName: " + response);
+          return response;
+        }catch(error){
+          return false;
+        }
+        
+        
       },
       CheckPassword(){
         return this.user.password === this.confirmPassword;
@@ -127,7 +138,8 @@ export default {
         return /^\d+$/.test(this.user.phone);
     },
     async SignUp(){
-        if(this.CheckFullName() && this.CheckUserName() && this.CheckPassword() && this.CheckPhone()){
+        if(this.CheckFullName() && await this.CheckUserName() && this.CheckPassword() && this.CheckPhone()){
+          console.log("sending sign up request");
             const response = await fetch("http://localhost:8080/signup", {
                 method: "post",
                 headers: { "Content-Type": "application/json" },
@@ -143,9 +155,7 @@ export default {
         }else{
             if(!this.CheckFullName()){
                 alert("Invalid First Name or Last Name");
-            }else if(!this.CheckUserName()){
-                alert("User Name already exists");
-            }else if(!this.CheckUserName()){
+            }else if(!this.CheckPassword()){
                 alert("Please, Enter a Valid Password with a length of 8");
             }else if(!this.CheckPhone()){
                 alert("Please, Enter a Valid Phone Number");

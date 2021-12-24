@@ -44,6 +44,8 @@ public class ProductDAO {
 		return false ;
 	}
 	public boolean insertProduct(Product p) {
+
+		 System.out.println(p.getImage());
 	     
 	        int result = jdbcTemplate.update(SQL_INSERT_PRODUCT,p.getCategoryName(),p.getName(), p.getDescription(), p.getPrice() ,p.getQuantity(),p.getDiscount(),p.getImage());
 	         

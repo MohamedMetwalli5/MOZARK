@@ -39,10 +39,15 @@ export default {
   },
   methods: {
     parseJSON: function (resp) {
-        return resp.JSON();
+      //console.log("vvvvvvvvvvv");
+      //console.log(resp.text());
+      //let p = JSON.parse(resp.text());
+      //console.log(p);
+        return resp.text();
     },
     checkStatus: function (resp) {
         console.log('status');
+        console.log(resp);
         if (resp.status >= 200 && resp.status < 300) {
             console.log('good status');
             return resp;
@@ -54,8 +59,6 @@ export default {
     },
     async login(){
         try {
-          console.log(this.email);
-          console.log(this.password);
           const response = await fetch( "http://localhost:8080/signin/" , {
               method: "post",
               headers: { "Content-Type": "application/json" },
@@ -66,22 +69,35 @@ export default {
           }).then(this.checkStatus)
           .then(this.parseJSON);
 
-          console.log(response.sessionID + "    " + response.role);
+          //console.log(response);
+          let p = JSON.parse(response);
+          console.log(p.role + " "  + p.sessionID);
 
           this.$store.commit('saveUserData',{
-              _id: response.sessionID,
-              _name: this.form.userName
+              _id: p.sessionID,
+              _name: this.email,
+              _role: p.role
           });
+          console.log("vvvvvvvv");
           console.log("user name that stored in the Vuex" + this.$store.state.userID);
-          return true;
+          return {
+            valid: true,
+            role: p.role
+            };
         } catch (error) {
-            return false;
+            return {
+              valid: false,
+              role: null
+              };
         } 
       },
     async SignIn(){
-      const valid = await this.login();
-      if (valid) {
+      const state = await this.login();
+      if (state.valid) {
+        if(state.role)
           this.$router.push({ name: "AdminSettings" });
+        else
+          this.$router.push({ name: "Home" });
       } else {
           alert("Please try agian, email or password is wrong :(");
       }
