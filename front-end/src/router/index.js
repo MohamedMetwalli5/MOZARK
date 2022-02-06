@@ -1,70 +1,90 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SignUp from '../views/SignUp.vue'
-import SignIn from '../views/SignIn.vue'
-import Home from '../views/Home.vue'
+import Admins from '../views/Admins.vue'
+import Notifications from '../views/Notifications.vue'
 import Settings from '../views/Settings.vue'
-import AdminSettings from '../views/AdminSettings.vue'
-import Clothing from '../views/Clothing.vue'
-import Electronics from '../views/Electronics.vue'
-import Shoes from '../views/Shoes.vue'
-import Watches from '../views/Watches.vue'
-import Jewellery from '../views/Jewellery.vue'
-import Sports from '../views/Sports.vue'
-import ShoppingCart from '../views/ShoppingCart.vue'
+import OrderPage from '../views/OrderPage.vue'
+import CartPage from '../views/CartPage.vue'
+import SignIn from '../components/SignIn.vue'
+import SignUp from '../components/SignUp.vue'
+import ChangePassword from '../components/ChangePassword.vue'
+import Products from '../components/Products.vue'
+import displayProduct from '../components/displayProduct.vue'
+import newProduct from '../components/newProduct.vue'
+import Cart from '../views/Cart.vue'
+
+
 
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+
+    {
         path: '/',
+        name: 'SignIn',
+        component: SignIn
+    },
+    {
+        path: '/Products',
+        name: 'Products',
+        component: Products
+    },
+    {
+        path: '/Cart',
+        name: 'Cart',
+        component: Cart
+    },
+    {
+        path: '/newProduct/:product',
+        name: 'newProduct',
+        component: newProduct
+    },
+    {
+        path: '/newProduct',
+        name: 'newProduct',
+        component: newProduct
+    },
+    {
+        path: '/displayProduct/:product',
+        name: 'displayProduct',
+        component: displayProduct
+    },
+    {
+        path: '/signup',
         name: 'SignUp',
         component: SignUp
     },
     {
-        path: '/SignIn',
-        name: 'SignIn',
-        component: SignIn
-    }, {
-        path: '/Home',
-        name: 'Home',
-        component: Home
-    }, {
+        path: '/admins',
+        name: 'Admins',
+        component: Admins
+    },
+    {
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: ChangePassword
+    },
+    {
+        path: '/Notifications',
+        name: 'Notifications',
+        component: Notifications
+    },
+    {
         path: '/Settings',
         name: 'Settings',
         component: Settings
-    }, {
-        path: '/Clothing',
-        name: 'Clothing',
-        component: Clothing
-    }, {
-        path: '/Electronics',
-        name: 'Electronics',
-        component: Electronics
-    }, {
-        path: '/Shoes',
-        name: 'Shoes',
-        component: Shoes
-    }, {
-        path: '/Watches',
-        name: 'Watches',
-        component: Watches
-    }, {
-        path: '/Jewellery',
-        name: 'Jewellery',
-        component: Jewellery
-    }, {
-        path: '/Sports',
-        name: 'Sports',
-        component: Sports
-    }, {
-        path: '/AdminSettings',
-        name: 'AdminSettings',
-        component: AdminSettings
-    }, {
-        path: '/ShoppingCart',
-        name: 'ShoppingCart',
-        component: ShoppingCart
     },
+    {
+        path: '/OrderPage',
+        name: 'OrderPage',
+        component: OrderPage
+    },
+    {
+        path: '/CartPage',
+        name: 'CartPage',
+        component: CartPage
+    },
+
 ]
 
 const router = new VueRouter({

@@ -48,15 +48,12 @@ const getDefaultState = () => {
     return {
     }
 };
-
 function parseJSON(resp) {
     return resp.json();
 }
-
 function parseText(resp) {
     return resp.text();
 }
-
 function checkStatus(resp) {
     console.log('status');
     if (resp.status >= 200 && resp.status < 300) {

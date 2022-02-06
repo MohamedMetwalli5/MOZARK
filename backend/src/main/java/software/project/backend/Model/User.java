@@ -6,9 +6,9 @@ public class User implements Imodel{
 	private String firstName;
 	private String lastName;
 	private String password;
-	private String Address;
+	private String address;
 	private String phone;
-	private boolean role;
+	private int role;
 	
 	public User()
 	{
@@ -66,18 +66,18 @@ public class User implements Imodel{
 	}
 	
 	public String getAddress() {
-		return this.Address;
+		return this.address;
 	}
 
 	public void setAddress(String address) {
-		this.Address = address;
+		this.address = address;
 	}
 
-	public boolean getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(boolean role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 }

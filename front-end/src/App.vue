@@ -1,22 +1,39 @@
 <template>
   <div id="app">
-    <router-view/>
+
+    
+       
+  <router-view/>
+    
   </div>
 </template>
 
-<style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-} */
+<script>
 
-body, html{
-  margin: 0;
-  padding: 0;
-  min-width: 1000px;
+export default {
+  name: 'App',
+  components: {    
+
+      }
+}
+</script>
+
+<style >
+#app
+{
+  background-color: #FFF;
+  min-width: 100%;
+  min-height: 100%;
+}
+.navbar
+{
+  display: flex;
+  justify-content: space-between;
+  background-color: #131619;
+  z-index: 10000000;
+  
 }
 
 </style>
+
+

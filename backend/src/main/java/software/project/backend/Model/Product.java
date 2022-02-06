@@ -1,5 +1,6 @@
 package software.project.backend.Model;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Product implements Imodel{

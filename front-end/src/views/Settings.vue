@@ -1,197 +1,256 @@
 <template>
-  <div id="settings-container">
-    <TheNavBar />
-    <div class="setting-option">
-      <h2>Upload a Profile Picture</h2>
-      <form id="form" action="/action_page.php">
-        <input type="file" id="ProfilePicture" name="filename">
-        <input type="submit" class="save-button" style="background-color: orange">
-      </form>
-    </div>
-    <div class="setting-option">
-      <h2>Change Password</h2>
-      <input
-          type="password"
-          placeholder="Old Password"
-          value=""
-          ref="PasswordRef"
-          id = "user-old-password"
-          v-model="password"
-          class="text-box"
-        />  
-        <input
-          type="password"
-          placeholder="New Password"
-          value=""
-          ref="PasswordRef"
-          id = "user-new-password"
-          v-model="password"
-          class="text-box"
-        />  
-        <input
-          type="button"
-          value="Save"
-          class="save-button"
-          id = "password-save"
-          @click="Save('password-save')"
-        />  
-    </div>
-    <div class="setting-option">
-      <h2>Add Address</h2>
-      <input
-          type="text"
-          placeholder="New Address"
-          value=""
-          ref="AddressRef"
-          id = "user-address"
-          v-model="text"
-          class="text-box"
-        />  
-        <input
-          type="button"
-          value="Save"
-          class="save-button"
-          id = "address-save"
-          @click="Save('address-save')"
-        />  
-    </div>
-    <div class="setting-option">
-      <h2>Change Phone Number</h2>
-        <input
+  <div>
+    <Navbar />
+    <div class="container">
+      <div class="Settings">
+        <form>
+          <div class="mb-3">
+            <label for="firstname" class="form-label">first Name</label>
+            <input
               type="text"
-              placeholder="New Phone Number"
-              value=""
-              ref="PhoneNumberRef"
-              id = "user-phone-number"
-              v-model="text"
-              class="text-box"
-        />  
-        <input
-          type="button"
-          value="Save"
-          class="save-button"
-          id = "phone-number-save"
-          @click="Save('phone-number-save')"
-        />  
+              class="form-control"
+              id="firstname"
+              v-model="allSettings.firstName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastname" class="form-label">last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              v-model="allSettings.lastName"
+            />
+          </div>
+         
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+               v-model="allSettings.userName"
+              disabled
+            />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              v-model="allSettings.address"
+            />
+          </div>
+
+
+          <div class="mb-3">
+            <label for="Phone" class="form-label">Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Phone"
+              v-model="allSettings.phone"
+            />
+          </div>
+
+          <div id="contacts">
+  <table>
+    <thead>
+      <tr>
+        <th v-if="role === 1" class="sort" data-sort="name">Admins</th>
+      </tr>
+    </thead>
+    <tbody v-if="role === 1" class="list">
+      <tr v-for="admin in admins" :key="admin">
+        <td class="name">{{admin}}</td>
+        <td @click="deleteAdmin(admin)" class="remove" ><i class="fa fa-trash" aria-hidden="true"></i></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+</div>
+          <div class="save_and_cancel">
+           <div>
+              <button type="button" class="btn btn-primary"  @click.prevent="saveSetting">Save</button>
+            <button type="button" class="btn btn-outline-dark" @click="cancel">Cancel</button>
+           </div>
+           <div>
+              <router-link to="/ChangePassword">Change Password</router-link>
+              <router-link v-if="role === 1" to="/admins">Admins</router-link>
+           </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <Footer/>
+    
   </div>
 </template>
 
 <script>
-import TheNavBar from '../components/TheNavBar.vue';
-import Footer from '../components/Footer.vue';
-
+import Navbar from "../components/nbar.vue";
 export default {
-  components:{
-    "TheNavBar" : TheNavBar,
-    "Footer" : Footer,
-  },
   name: "Settings",
-  props: {
-    msg: String,
+  isAdmin: true ,
+  components: {
+    Navbar,
   },
   data() {
     return {
+      newAdmin:'',
+      allSettings: {
+        firstName:"",
+        lastName:"", 
+        address: "",
+        phone: "",
+        userName: ""
+      },
+      admins: [],
     };
   },
+  computed:{
+    userID(){
+      return this.$store.state.userID;
+    },
+    userName(){
+      return this.$store.state.userName;
+    },
+    role(){
+      return this.$store.state.role;
+    },
+  },
   methods: {
-    CheckPassword(){
-        let old_password = document.getElementById("user-old-password").value;
-        let new_password = document.getElementById("user-new-password").value;
-        if(old_password !== new_password && new_password.length >= 8){
-           // to-do
-           //// we must send a check the datebase to check if the old password is correct 
-           // if the response is true -> then we must change the new password with the new one 
-           alert("Saved Successfully!");
-        }else{
-          alert("Please, Enter a New Valid Password");
-        }
+    parseJSON: function (resp) {
+        return resp.json();
     },
-    CheckPhoneNumber(){
-       return /^\d+$/.test(document.getElementById("user-phone-number").value);
-    },
-    Save(id){
-      if(id === "password-save"){
-        this.CheckPassword();
-      }else if(id === "address-save"){
-        if(document.getElementById("user-address").value.length > 6){
-          // to-do we must save the new address in the datebase
-          alert("Saved Successfully!");
-        }else{
-          alert("Please, Enter a Valid Address");
+    checkStatus: function (resp) {
+        console.log('status');
+        console.log(resp);
+        if (resp.status >= 200 && resp.status < 300) {
+            console.log('good status');
+            return resp;
         }
-        
-      }else if(id === "phone-number-save"){
-        let response = this.CheckPhoneNumber();
-        if(response){
-          // to-do we must save the new phone number in the datebase 
-          alert("Saved Successfully!");
-        }else{
-          alert("Please, Enter a Valid Phone Number");
-        }
-      } 
+        console.log('bad status');
+        return this.parseJSON(resp).then((resp) => {
+            throw resp;
+        });
     },
+    async getSetting(){
+      try {
+          let response = await fetch( "http://localhost:8080/admin/getSetting/" + this.userID, {
+              method: "get", 
+          }).then(this.checkStatus)
+          .then(this.parseJSON);
+          console.log(response);
+          this.allSettings = response;
+      } catch (error) {
+          alert('error');
+      }
+    },
+    async getAdmins(){
+      try {
+          let response = await fetch( "http://localhost:8080/admin/getAdmins/" + this.userID, {
+              method: "get", 
+          }).then(this.checkStatus)
+          .then(this.parseJSON);
+          console.log(response);
+          this.admins = response;
+          console.log(this.admins);
+      } catch (error) {
+          alert('error');
+      }
+    },
+    async deleteAdmin(userName){
+      this.admins = this.admins.filter(item => item !== userName);
+      try {
+          fetch( "http://localhost:8080/admin/deleteAdmin/" + this.userID + '/' + userName, {
+              method: "delete", 
+          })
+      } catch (error) {
+          alert('error');
+      }
+    },
+    saveSetting(){
+      fetch(
+        "http://localhost:8080/admin/updateAdmin/" + this.userID,
+        {
+          method: "put",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.allSettings),
+        }
+      );
+      this.$router.push({ name: "Products"});
+    },
+    cancel(){
+      this.$router.push({ name: "Products"});
+    }
+  },
+  created() {
+    this.getSetting();
+    this.getAdmins();
   },
 };
 </script>
-
 <style scoped>
-#settings-container {
-    background-color: rgb(250, 239, 84);
-    background-size: cover;
-    width: 100%;
-    border: 1px solid rgb(250, 239, 84);
-    position: absolute;
+.Settings {
+  background-color: #DDD;
+  border-radius: 10px;
+  padding: 20px;
+  top: 50px;
+  position: absolute;
+  width: 40%;
 }
-#title {
-  min-width: 10vw;
-  border-bottom: 10px solid #ff5b5b;
-  border-radius: 50px;
-  padding-bottom: 15px;
-  display: inline-block;
-  font-size: 5vw;
-  color: rgb(71, 103, 248);
-  margin-left: 35%;
-  margin-top: 1%;
-  margin-bottom: 2vw;
-  font-family: "Yanone Kaffeesatz", cursive;
-  text-shadow: 0px 0px 0 rgb(236, 180, 180), 1px 0px 0 rgb(236, 180, 180),
-    2px 0px 0 rgb(252, 129, 129), 3px 0px 0 rgb(187, 187, 187),
-    4px 0px 0 rgb(255, 184, 184), 5px 0px 0 rgb(236, 180, 180),
-    6px 0px 0 rgb(250, 171, 171), 7px 0px 6px rgba(0, 0, 0, 0.6),
-    7px 0px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2);
-  z-index: 11;
-  top: 0;
+.container {
+  width: 45%;
+}
+select {
+  margin: 10px 20px 0 0;
+  padding: 3px;
+  height: 40px;
+}
+.paddingwithborder {
+  padding-bottom: 20px;
+  border-bottom: 6px solid #ddd;
+}
+.changecover {
+  padding: 15px 0;
+}
+.changeprofile span,
+.changecover span {
+  cursor: pointer;
+  color: #ee1144;
+  font-size: 18px;
+}
+.changeprofile .b-avatar,
+.changecover .b-avatar {
+  width: 4rem;
+  height: 4rem;
+  margin: 10px 10px 10px 0;
+}
+.save_and_cancel {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.save_and_cancel button {
+  margin-right: 20px;
+  min-width: 100px;
+}
+.save_and_cancel a {
+  display: block;
+}
+i{
   cursor: pointer;
 }
-.setting-option{
-  border: 2px solid;
+td{
+  width: 300px;
 }
-h2{
- margin-left: 10px;
+td input{
+  width: 200px;
 }
-.text-box{
-  border-radius: 20px;
-  width: 350px;
-  height: 30px;
-  margin: 10px;
-  padding: 5px;
-  font-size: 20px;
+.add[data-v-53cc84dd] {
+    display: block;
+    margin-left: 80px;
 }
-.save-button{
-  width: 80px;
-  height: 50px;
-  margin: 10px;
-  margin-left: 30px;
-  padding: 5px;
-  font-size: 20px;
-  border-radius: 30px;
-  color: rgb(255, 255, 255);
-  background: rgb(227, 70, 248);
-  cursor: pointer;
-}
-#form{
-  margin: 10px;
-}
+
 </style>
