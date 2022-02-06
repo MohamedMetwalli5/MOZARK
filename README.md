@@ -5,9 +5,6 @@
 ![License](https://img.shields.io/badge/License-GPL&ndash;3.0%20-purple.svg)
 <br>
 <br>
-Sprint 1 completed : 
-![image](https://user-images.githubusercontent.com/58489322/147325001-02b8964d-23a7-47a9-b0e1-47458e314281.png)
-
 # MOZARK 
 An E-commerce Website.<br>
 Jira : https://mozark5.atlassian.net/jira/software/projects/MOZARK/boards/1
