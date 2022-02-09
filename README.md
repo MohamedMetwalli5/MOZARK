@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/License-GPL&ndash;3.0%20-purple.svg)
 <br>
 <br>
-# MOZARK 
+# MOZARK
 
 ## System Main Components
 ![SystemMainComponents](https://user-images.githubusercontent.com/58489322/144869963-fccd4395-b488-488d-8636-2fde447c7a6a.png)
