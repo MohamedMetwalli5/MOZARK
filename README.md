@@ -19,3 +19,6 @@
 
 ## DataBase Design 
 ![image](https://user-images.githubusercontent.com/58489322/144879856-923df8a4-1e8f-4cab-8a73-9d9dafcf41d8.png)
+
+## The Contributers
+![image](https://user-images.githubusercontent.com/58489322/153239555-ab7df42e-36b2-4c19-82e7-f259edf04a02.png)
